@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="ff-header">
+      <div class="edition-tag">XXVI edizione · companion app</div>
+      <h1 class="logo-line">festival<em>filosofia</em></h1>
+      <div class="theme-block">
+        <span class="theme-label">tema</span>
+        <span class="theme-word">caos</span>
+      </div>
+      <div class="dates">
+        18 · 19 · 20 settembre 2026 &emsp; Modena · Carpi · Sassuolo
+      </div>
+    </header>
+
+    <main class="ff-sections" id="sections">
+      <!-- 1. INFO -->
+      <section class="ff-section open" data-id="info">
+        <button class="ff-section-header" type="button" onclick="toggle('info')" aria-expanded="true" aria-controls="section-info">
+          <span class="ff-section-num">01</span>
+          <span class="ff-section-title">Info rapide</span>
+          <i class="ti ti-chevron-down ff-section-arrow" aria-hidden="true"></i>
+        </button>
+        <div class="ff-section-body" id="section-info">
+          <div class="info-grid">
+            <div class="info-cell">
+              <div class="lbl">Date</div>
+              <div class="val">18–20 set. 2026</div>
+            </div>
+            <div class="info-cell">
+              <div class="lbl">Tema</div>
+              <div class="val red">caos</div>
+            </div>
+            <div class="info-cell">
+              <div class="lbl">Ingresso</div>
+              <div class="val">Gratuito</div>
+            </div>
+            <div class="info-cell">
+              <div class="lbl">Edizione</div>
+              <div class="val">XXVI</div>
+            </div>
+          </div>
+          <p class="info-note">
+            Il festival<em>filosofia</em> allestisce per tre giorni spazi
+            aperti e diffusi di formazione e conversazione a Modena, Carpi e
+            Sassuolo. Tutte le iniziative — lezioni, mostre, spettacoli — sono
+            a ingresso gratuito.
+          </p>
+        </div>
+      </section>
+
+      <!-- 2. MAPPA -->
+      <section class="ff-section" data-id="mappa">
+        <button class="ff-section-header" type="button" onclick="toggle('mappa')" aria-expanded="false" aria-controls="section-mappa">
+          <span class="ff-section-num">02</span>
+          <span class="ff-section-title">Mappa dell'evento</span>
+          <i class="ti ti-chevron-down ff-section-arrow" aria-hidden="true"></i>
+        </button>
+        <div class="ff-section-body" id="section-mappa">
+          <div class="map-ph">
+            <i class="ti ti-map-off" aria-hidden="true"></i>
+            <p>
+              Mappa interattiva non ancora disponibile<br />Sarà pubblicata a
+              luglio 2026
+            </p>
+          </div>
+          <div class="cities-row">
+            <div class="city-item">
+              <strong>Modena</strong>sede principale
+            </div>
+            <div class="city-item"><strong>Carpi</strong>Piazza Martiri</div>
+            <div class="city-item">
+              <strong>Sassuolo</strong>Piazza Garibaldi
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. PROGRAMMA -->
+      <section class="ff-section" data-id="programma">
+        <button class="ff-section-header" type="button" onclick="toggle('programma')" aria-expanded="false" aria-controls="section-programma">
+          <span class="ff-section-num">03</span>
+          <span class="ff-section-title">Programma</span>
+          <i class="ti ti-chevron-down ff-section-arrow" aria-hidden="true"></i>
+        </button>
+        <div class="ff-section-body" id="section-programma">
+          <p class="prog-disclaimer">
+            Programma indicativo — soggetto a variazioni
+          </p>
+
+          <div class="prog-day">
+            <div class="prog-day-header">Venerdì 18 settembre</div>
+            <div class="prog-event">
+              <div class="prog-time">10:00</div>
+              <div class="prog-info">
+                <div class="prog-title">Apertura del festival</div>
+                <div class="prog-place">Piazza Grande · Modena</div>
+              </div>
+            </div>
+            <div class="prog-event">
+              <div class="prog-time">11:00</div>
+              <div class="prog-info">
+                <div class="prog-title">
+                  <em>Il caos come principio cosmologico</em>
+                </div>
+                <div class="prog-speaker">Massimo Cacciari</div>
+                <div class="prog-place">Piazza Grande · Modena</div>
+              </div>
+            </div>
+            <div class="prog-event">
+              <div class="prog-time">15:00</div>
+              <div class="prog-info">
+                <div class="prog-title">
+                  <em>Ordine e disordine nelle scienze naturali</em>
+                </div>
+                <div class="prog-speaker">Elena Castellucci</div>
+                <div class="prog-place">Piazza Martiri · Carpi</div>
+              </div>
+            </div>
+            <div class="prog-event">
+              <div class="prog-time">21:00</div>
+              <div class="prog-info">
+                <div class="prog-title">
+                  Concerto filosofico: <em>Musica e caos</em>
+                </div>
+                <div class="prog-place">Cortile Palazzo Ducale · Modena</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prog-day">
+            <div class="prog-day-header">Sabato 19 settembre</div>
+            <div class="prog-event">
+              <div class="prog-time">10:00</div>
+              <div class="prog-info">
+                <div class="prog-title">
+                  <em>Il caos nella politica contemporanea</em>
+                </div>
+                <div class="prog-speaker">Barbara Carnevali</div>
+                <div class="prog-place">Piazza Grande · Modena</div>
+              </div>
+            </div>
+            <div class="prog-event">
+              <div class="prog-time">14:00</div>
+              <div class="prog-info">
+                <div class="prog-title">
+                  Laboratorio ragazzi: <em>Creare ordine dal caos</em>
+                </div>
+                <div class="prog-place">Palazzo dei Musei · Modena</div>
+              </div>
+            </div>
+            <div class="prog-event">
+              <div class="prog-time">17:30</div>
+              <div class="prog-info">
+                <div class="prog-title"><em>Caos, caso e libertà</em></div>
+                <div class="prog-speaker">Daniele Francesconi</div>
+                <div class="prog-place">Piazza Garibaldi · Sassuolo</div>
+              </div>
+            </div>
+            <div class="prog-event">
+              <div class="prog-time">20:30</div>
+              <div class="prog-info">
+                <div class="prog-title">
+                  Cena filosofica <em>(su prenotazione)</em>
+                </div>
+                <div class="prog-place">Ex-fonderia · Modena</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prog-day">
+            <div class="prog-day-header">Domenica 20 settembre</div>
+            <div class="prog-event">
+              <div class="prog-time">10:30</div>
+              <div class="prog-info">
+                <div class="prog-title">
+                  <em>Il caos digitale e l'intelligenza artificiale</em>
+                </div>
+                <div class="prog-speaker">Michela Marzano</div>
+                <div class="prog-place">Piazza Grande · Modena</div>
+              </div>
+            </div>
+            <div class="prog-event">
+              <div class="prog-time">15:00</div>
+              <div class="prog-info">
+                <div class="prog-title">
+                  <em>Dal caos al cosmo — e ritorno</em>
+                </div>
+                <div class="prog-speaker">Stefano Massini</div>
+                <div class="prog-place">Piazza Grande · Modena</div>
+              </div>
+            </div>
+            <div class="prog-event">
+              <div class="prog-time">18:00</div>
+              <div class="prog-info">
+                <div class="prog-title">Chiusura del festival</div>
+                <div class="prog-place">Piazza Grande · Modena</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. HOTEL -->
+      <section class="ff-section" data-id="hotel">
+        <button class="ff-section-header" type="button" onclick="toggle('hotel')" aria-expanded="false" aria-controls="section-hotel">
+          <span class="ff-section-num">04</span>
+          <span class="ff-section-title">Dove alloggiamo</span>
+          <i class="ti ti-chevron-down ff-section-arrow" aria-hidden="true"></i>
+        </button>
+        <div class="ff-section-body" id="section-hotel">
+          <div class="hotel-wrap">
+            <div class="hotel-head">
+              <div class="hotel-name">Hotel Canalgrande</div>
+              <div class="hotel-addr">Corso Canalgrande 6, 41121 Modena</div>
+              <div class="hotel-tag">
+                ⭐⭐⭐⭐ · Check-in 15:00 · Check-out 11:00
+              </div>
+            </div>
+            <div class="hotel-map-ph">
+              <svg
+                viewBox="0 0 380 150"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <rect width="380" height="150" fill="#e8e8e4" />
+                <rect x="0" y="60" width="380" height="8" fill="#d4d0cc" />
+                <rect x="0" y="100" width="380" height="6" fill="#d4d0cc" />
+                <rect x="70" y="0" width="6" height="150" fill="#d4d0cc" />
+                <rect x="170" y="0" width="4" height="150" fill="#d4d0cc" />
+                <rect x="270" y="0" width="6" height="150" fill="#d4d0cc" />
+                <rect
+                  x="80"
+                  y="20"
+                  width="65"
+                  height="32"
+                  rx="2"
+                  fill="#ccc9c6"
+                />
+                <rect
+                  x="80"
+                  y="70"
+                  width="65"
+                  height="22"
+                  rx="2"
+                  fill="#ccc9c6"
+                />
+                <rect
+                  x="180"
+                  y="30"
+                  width="55"
+                  height="22"
+                  rx="2"
+                  fill="#ccc9c6"
+                />
+                <rect
+                  x="180"
+                  y="68"
+                  width="55"
+                  height="28"
+                  rx="2"
+                  fill="#ccc9c6"
+                />
+                <rect
+                  x="280"
+                  y="18"
+                  width="70"
+                  height="36"
+                  rx="2"
+                  fill="#ccc9c6"
+                />
+                <rect
+                  x="280"
+                  y="70"
+                  width="70"
+                  height="22"
+                  rx="2"
+                  fill="#ccc9c6"
+                />
+                <circle
+                  cx="190"
+                  cy="78"
+                  r="14"
+                  fill="none"
+                  stroke="#c0392b"
+                  stroke-width="2"
+                />
+                <circle cx="190" cy="78" r="5" fill="#c0392b" />
+              </svg>
+              <div class="hotel-map-label">
+                <i class="ti ti-map-pin" aria-hidden="true"></i>
+                <span>segnaposto Google Maps</span>
+              </div>
+            </div>
+          </div>
+          <p class="hotel-note">
+            Prenotazione di gruppo confermata · ref. FF2026-GRP · parcheggio
+            convenzionato
+          </p>
+        </div>
+      </section>
+
+      <!-- 5. RISTORANTI -->
+      <section class="ff-section" data-id="ristoranti">
+        <button class="ff-section-header" type="button" onclick="toggle('ristoranti')" aria-expanded="false" aria-controls="section-ristoranti">
+          <span class="ff-section-num">05</span>
+          <span class="ff-section-title">I nostri ristoranti</span>
+          <i class="ti ti-chevron-down ff-section-arrow" aria-hidden="true"></i>
+        </button>
+        <div class="ff-section-body" id="section-ristoranti">
+          <div class="risto-item">
+            <div class="risto-n">01</div>
+            <div class="risto-info">
+              <div class="risto-name">Osteria Francescana Bistrot</div>
+              <div class="risto-type">Cucina Modenese · Trattoria</div>
+              <div class="risto-addr">Via Stella 22, Modena</div>
+              <div class="risto-when">
+                Venerdì sera · ore 20:00 · prenotato
+              </div>
+            </div>
+          </div>
+          <div class="risto-item">
+            <div class="risto-n">02</div>
+            <div class="risto-info">
+              <div class="risto-name">Trattoria da Enzo</div>
+              <div class="risto-type">Emiliana tradizionale</div>
+              <div class="risto-addr">Via Coltellini 17, Modena</div>
+              <div class="risto-when">Sabato pranzo · senza prenotazione</div>
+            </div>
+          </div>
+          <div class="risto-item">
+            <div class="risto-n">03</div>
+            <div class="risto-info">
+              <div class="risto-name">Il Filosofo Goloso</div>
+              <div class="risto-type">Vegetariano · Bio</div>
+              <div class="risto-addr">Piazza Roma 4, Carpi</div>
+              <div class="risto-when">
+                Sabato sera · dopo le lezioni di Carpi
+              </div>
+            </div>
+          </div>
+          <div class="risto-item">
+            <div class="risto-n">04</div>
+            <div class="risto-info">
+              <div class="risto-name">Cantina del Duca</div>
+              <div class="risto-type">Enoteca · Cicchetti</div>
+              <div class="risto-addr">
+                Corso Vittorio Emanuele 8, Sassuolo
+              </div>
+              <div class="risto-when">
+                Domenica aperitivo · dopo le lezioni
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. NOTE -->
+      <section class="ff-section" data-id="note">
+        <button class="ff-section-header" type="button" onclick="toggle('note')" aria-expanded="false" aria-controls="section-note">
+          <span class="ff-section-num">06</span>
+          <span class="ff-section-title">Note</span>
+          <i class="ti ti-chevron-down ff-section-arrow" aria-hidden="true"></i>
+        </button>
+        <div class="ff-section-body" id="section-note">
+          <div class="notepad-wrap">
+            <div class="notepad-top">
+              <label for="ff-notes">Il mio taccuino</label>
+              <div class="notepad-rings">
+                <div class="notepad-ring" aria-hidden="true"></div>
+                <div class="notepad-ring" aria-hidden="true"></div>
+                <div class="notepad-ring" aria-hidden="true"></div>
+              </div>
+            </div>
+            <div class="notepad-inner">
+              <div class="notepad-lines-bg"></div>
+              <div class="notepad-margin-line"></div>
+              <textarea
+                id="ff-notes"
+                placeholder="Scrivi qui le tue note, riflessioni, citazioni dalle lezioni..."
+                aria-label="Note personali"
+              ></textarea>
+            </div>
+          </div>
+          <p class="ff-note-disclaimer">
+            Le note vengono salvate localmente sul dispositivo
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="ff-footer">
+      <span>festivalfilosofia 2026</span>
+      <div class="red-dot" aria-hidden="true"></div>
+      <span>modena · carpi · sassuolo</span>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
