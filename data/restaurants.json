@@ -1,0 +1,30 @@
+[
+  {
+    "n": "01",
+    "name": "Osteria Francescana Bistrot",
+    "type": "Cucina Modenese · Trattoria",
+    "addr": "Via Stella 22, Modena",
+    "when": "Venerdì sera · ore 20:00 · prenotato"
+  },
+  {
+    "n": "02",
+    "name": "Trattoria da Enzo",
+    "type": "Emiliana tradizionale",
+    "addr": "Via Coltellini 17, Modena",
+    "when": "Sabato pranzo · senza prenotazione"
+  },
+  {
+    "n": "03",
+    "name": "Il Filosofo Goloso",
+    "type": "Vegetariano · Bio",
+    "addr": "Piazza Roma 4, Carpi",
+    "when": "Sabato sera · dopo le lezioni di Carpi"
+  },
+  {
+    "n": "04",
+    "name": "Cantina del Duca",
+    "type": "Enoteca · Cicchetti",
+    "addr": "Corso Vittorio Emanuele 8, Sassuolo",
+    "when": "Domenica aperitivo · dopo le lezioni"
+  }
+]
