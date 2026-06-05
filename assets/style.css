@@ -25,6 +25,26 @@
   --ff-text: #1a1a1a;
   --ff-text-muted: #666462;
   --ff-border: #d8d6d4;
+  --fs: 1;
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+  :root { --fs: 1.25; }
+}
+
+html[data-theme="dark"] {
+  --ff-white: #111110;
+  --ff-black: #e6e2dc;
+  --ff-near-black: #d8d4ce;
+  --ff-red: #d44637;
+  --ff-red-dark: #b03429;
+  --ff-red-light: #3d1a16;
+  --ff-gray-light: #1c1c1a;
+  --ff-gray-mid: #2c2a28;
+  --ff-gray: #6a6764;
+  --ff-text: #d8d4ce;
+  --ff-text-muted: #9e9a96;
+  --ff-border: #2e2c29;
 }
 
 * {
@@ -33,11 +53,15 @@
   padding: 0;
 }
 
+body {
+  background: var(--ff-white);
+}
+
 .ff-app {
   font-family: 'Libre Franklin', sans-serif;
   background: var(--ff-white);
   color: var(--ff-text);
-  max-width: 420px;
+  max-width: 1024px;
   margin: 0 auto;
 }
 
@@ -47,19 +71,25 @@
   padding: 24px 20px 20px;
   border-bottom: 2px solid var(--ff-black);
 
+  .ff-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
   .edition-tag {
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 10px;
+    font-size: calc(10px * var(--fs));
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ff-gray);
-    margin-bottom: 10px;
   }
 
   .logo-line {
     font-family: 'EB Garamond', serif;
-    font-size: 28px;
+    font-size: calc(28px * var(--fs));
     font-weight: 400;
     letter-spacing: 0.01em;
     line-height: 1;
@@ -79,7 +109,7 @@
   }
 
   .theme-label {
-    font-size: 10px;
+    font-size: calc(10px * var(--fs));
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--ff-gray);
@@ -89,7 +119,7 @@
   .theme-word {
     font-family: 'EB Garamond', serif;
     font-style: italic;
-    font-size: 36px;
+    font-size: calc(36px * var(--fs));
     font-weight: 400;
     color: var(--ff-red);
     line-height: 1;
@@ -97,7 +127,7 @@
   }
 
   .dates {
-    font-size: 12px;
+    font-size: calc(12px * var(--fs));
     color: var(--ff-text-muted);
     margin-top: 8px;
     font-weight: 300;
@@ -155,7 +185,7 @@
 
 .ff-section-num {
   font-family: 'EB Garamond', serif;
-  font-size: 13px;
+  font-size: calc(13px * var(--fs));
   color: var(--ff-gray);
   min-width: 18px;
   transition: color 0.15s;
@@ -164,7 +194,7 @@
 .ff-section-title {
   flex: 1;
   font-family: 'EB Garamond', serif;
-  font-size: 17px;
+  font-size: calc(17px * var(--fs));
   font-weight: 500;
   letter-spacing: 0.01em;
   color: var(--ff-text);
@@ -172,7 +202,7 @@
 }
 
 .ff-section-arrow {
-  font-size: 16px;
+  font-size: calc(16px * var(--fs));
   color: var(--ff-gray);
   transition: transform 0.25s, color 0.15s;
 }
@@ -204,7 +234,7 @@
   padding: 12px 14px;
 
   .lbl {
-    font-size: 9px;
+    font-size: calc(9px * var(--fs));
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ff-gray);
@@ -214,19 +244,19 @@
 
   .val {
     font-family: 'EB Garamond', serif;
-    font-size: 15px;
+    font-size: calc(15px * var(--fs));
     color: var(--ff-near-black);
 
     &.red {
       color: var(--ff-red);
       font-style: italic;
-      font-size: 17px;
+      font-size: calc(17px * var(--fs));
     }
   }
 }
 
 .info-note {
-  font-size: 13px;
+  font-size: calc(13px * var(--fs));
   line-height: 1.7;
   color: var(--ff-text);
   font-weight: 300;
@@ -237,7 +267,7 @@
 /* MAPPA */
 .map-ph {
   border: 1px solid var(--ff-border);
-  height: 200px;
+  height: 280px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -246,8 +276,8 @@
   background: var(--ff-gray-light);
   margin-bottom: 14px;
 
-  i { font-size: 32px; color: var(--ff-gray); }
-  p { font-size: 12px; color: var(--ff-gray); text-align: center; line-height: 1.5; font-weight: 300; }
+  i { font-size: calc(32px * var(--fs)); color: var(--ff-gray); }
+  p { font-size: calc(12px * var(--fs)); color: var(--ff-gray); text-align: center; line-height: 1.5; font-weight: 300; }
 }
 
 .cities-row {
@@ -261,7 +291,7 @@
   padding: 10px 6px;
   text-align: center;
   border-right: 1px solid var(--ff-border);
-  font-size: 12px;
+  font-size: calc(12px * var(--fs));
   color: var(--ff-text-muted);
 
   &:last-child { border-right: none; }
@@ -269,7 +299,7 @@
   strong {
     display: block;
     font-family: 'EB Garamond', serif;
-    font-size: 14px;
+    font-size: calc(14px * var(--fs));
     color: var(--ff-near-black);
     font-weight: 500;
     margin-bottom: 2px;
@@ -278,7 +308,7 @@
 
 /* PROGRAMMA */
 .prog-day-header {
-  font-size: 10px;
+  font-size: calc(10px * var(--fs));
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--ff-white);
@@ -301,7 +331,7 @@
 }
 
 .prog-time {
-  font-size: 10px;
+  font-size: calc(10px * var(--fs));
   font-weight: 500;
   color: var(--ff-red);
   letter-spacing: 0.04em;
@@ -312,7 +342,7 @@
 .prog-info {
   .prog-title {
     font-family: 'EB Garamond', serif;
-    font-size: 14px;
+    font-size: calc(14px * var(--fs));
     line-height: 1.4;
     margin-bottom: 2px;
     color: var(--ff-near-black);
@@ -321,14 +351,14 @@
   }
 
   .prog-speaker {
-    font-size: 11px;
+    font-size: calc(11px * var(--fs));
     color: var(--ff-text-muted);
     font-style: italic;
     font-family: 'EB Garamond', serif;
   }
 
   .prog-place {
-    font-size: 10px;
+    font-size: calc(10px * var(--fs));
     color: var(--ff-gray);
     margin-top: 2px;
     letter-spacing: 0.03em;
@@ -338,7 +368,7 @@
 }
 
 .prog-disclaimer {
-  font-size: 11px;
+  font-size: calc(11px * var(--fs));
   color: var(--ff-gray);
   font-style: italic;
   margin-bottom: 14px;
@@ -358,21 +388,21 @@
 
 .hotel-name {
   font-family: 'EB Garamond', serif;
-  font-size: 18px;
+  font-size: calc(18px * var(--fs));
   font-weight: 500;
   color: var(--ff-near-black);
   margin-bottom: 4px;
 }
 
 .hotel-addr {
-  font-size: 12px;
+  font-size: calc(12px * var(--fs));
   color: var(--ff-text-muted);
   font-weight: 300;
   margin-bottom: 8px;
 }
 
 .hotel-tag {
-  font-size: 10px;
+  font-size: calc(10px * var(--fs));
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ff-red);
@@ -380,7 +410,7 @@
 }
 
 .hotel-map-ph {
-  height: 150px;
+  height: 220px;
   background: #e8e8e8;
   position: relative;
   overflow: hidden;
@@ -399,10 +429,10 @@
   align-items: center;
   gap: 5px;
 
-  i { font-size: 24px; color: var(--ff-red); }
+  i { font-size: calc(24px * var(--fs)); color: var(--ff-red); }
 
   span {
-    font-size: 10px;
+    font-size: calc(10px * var(--fs));
     background: rgba(255, 255, 255, 0.85);
     padding: 3px 8px;
     color: var(--ff-text-muted);
@@ -411,7 +441,7 @@
 }
 
 .hotel-note {
-  font-size: 11px;
+  font-size: calc(11px * var(--fs));
   color: var(--ff-gray);
   font-style: italic;
   font-weight: 300;
@@ -431,7 +461,7 @@
 
 .risto-n {
   font-family: 'EB Garamond', serif;
-  font-size: 28px;
+  font-size: calc(28px * var(--fs));
   font-weight: 400;
   color: var(--ff-red-light);
   min-width: 28px;
@@ -444,7 +474,7 @@
 .risto-info {
   .risto-name {
     font-family: 'EB Garamond', serif;
-    font-size: 16px;
+    font-size: calc(16px * var(--fs));
     font-weight: 500;
     color: var(--ff-near-black);
     margin-bottom: 2px;
@@ -452,7 +482,7 @@
 }
 
 .risto-type {
-  font-size: 9px;
+  font-size: calc(9px * var(--fs));
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ff-red);
@@ -461,14 +491,14 @@
 }
 
 .risto-addr {
-  font-size: 12px;
+  font-size: calc(12px * var(--fs));
   color: var(--ff-text-muted);
   font-weight: 300;
   font-style: italic;
 }
 
 .risto-when {
-  font-size: 11px;
+  font-size: calc(11px * var(--fs));
   color: var(--ff-gray);
   margin-top: 4px;
   font-weight: 300;
@@ -488,7 +518,7 @@
   gap: 10px;
 
   label {
-    font-size: 10px;
+    font-size: calc(10px * var(--fs));
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--ff-gray);
@@ -548,7 +578,7 @@
   outline: none;
   resize: vertical;
   font-family: 'EB Garamond', serif;
-  font-size: 15px;
+  font-size: calc(15px * var(--fs));
   line-height: 28px;
   color: var(--ff-near-black);
   padding: 8px 14px 8px 60px;
@@ -558,12 +588,36 @@
 
 /* NOTE DISCLAIMER */
 .ff-note-disclaimer {
-  font-size: 11px;
+  font-size: calc(11px * var(--fs));
   color: var(--ff-gray);
   margin-top: 8px;
   text-align: center;
   font-style: italic;
   font-weight: 300;
+}
+
+/* THEME BUTTON */
+.ff-theme-btn {
+  background: none;
+  border: 1px solid var(--ff-border);
+  color: var(--ff-gray);
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(14px * var(--fs));
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  flex-shrink: 0;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    color: var(--ff-text);
+    border-color: var(--ff-gray);
+    background: var(--ff-gray-light);
+  }
 }
 
 /* FOOTER */
@@ -575,7 +629,7 @@
   justify-content: space-between;
 
   span {
-    font-size: 10px;
+    font-size: calc(10px * var(--fs));
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ff-gray);
@@ -588,4 +642,27 @@
     border-radius: 50%;
     background: var(--ff-red);
   }
+}
+
+/* DARK MODE — hardcoded color overrides */
+html[data-theme="dark"] .notepad-wrap {
+  background: #14140d;
+}
+
+html[data-theme="dark"] .hotel-map-ph {
+  background: #1e1e1c;
+}
+
+html[data-theme="dark"] .hotel-map-label span {
+  background: rgba(10, 10, 10, 0.8);
+}
+
+html[data-theme="dark"] .notepad-lines-bg {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 27px,
+    rgba(255, 255, 255, 0.06) 27px,
+    rgba(255, 255, 255, 0.06) 28px
+  );
 }
