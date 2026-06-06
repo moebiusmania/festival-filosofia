@@ -63,6 +63,13 @@ body {
   color: var(--ff-text);
   max-width: 1024px;
   margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  > .ff-sections {
+    flex: 1;
+  }
 }
 
 /* HEADER */
