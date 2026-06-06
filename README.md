@@ -10,6 +10,12 @@ App companion non ufficiale per il [Festival di Filosofia 2026](https://www.fest
 
 Una piccola app web pensata per chi partecipa al festival: raccoglie in un unico posto le informazioni pratiche (programma, mappa, hotel, ristoranti) e offre un blocco note personale per appunti.
 
+## Principi
+
+- **Open source** — codice pubblico, licenza MIT
+- **Nessun tracciamento** — nessun analytics, nessun cookie, nessun tracker di terze parti
+- **Privacy by design** — nessun database, nessun backend: tutti i dati (es. note personali) restano sul dispositivo dell'utente tramite `localStorage`
+
 ## Stack
 
 - **Runtime:** [Deno](https://deno.com/)
@@ -54,6 +60,12 @@ Unofficial companion web app for [Festival di Filosofia 2026](https://www.festiv
 ## Purpose
 
 A small web app for festival attendees: it gathers practical information in one place (schedule, map, hotels, restaurants) and includes a personal notepad for on-the-go notes.
+
+## Principles
+
+- **Open source** — public code, MIT licence
+- **No tracking** — no analytics, no cookies, no third-party trackers
+- **Privacy by design** — no database, no backend: all data (e.g. personal notes) stays on the user's device via `localStorage`
 
 ## Stack
 
