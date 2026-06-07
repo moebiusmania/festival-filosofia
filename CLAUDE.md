@@ -9,9 +9,22 @@ deno task dev      # start dev server (Vite HMR)
 deno task build    # production build → _fresh/
 deno task start    # serve the production build
 deno task update   # update Fresh to latest
+deno task test     # run unit tests (deno test --allow-read tests/)
 ```
 
 Linting uses the `fresh` + `recommended` rule tags from `deno.json`; run with `deno lint`.
+
+## Tests
+
+Tests live in `tests/` and use Deno's built-in test runner with `@std/assert`.
+
+| File | What it covers |
+|------|----------------|
+| `tests/restaurants_test.ts` | `data/restaurants.json` — field presence, zero-padded numbering, sequential order, no duplicate names |
+| `tests/sections_test.ts` | `SECTIONS` array in `islands/Sections.tsx` — count, id order, uniqueness, sequential nums, non-empty titles, Content is a function |
+| `tests/components_test.tsx` | Renders each section component via `preact-render-to-string` and asserts key text appears in the output |
+
+To add tests for a new section component, import it in `tests/components_test.tsx` and add a `Deno.test` block using `render(<YourSection />)` and `assertStringIncludes`.
 
 ## Architecture
 
