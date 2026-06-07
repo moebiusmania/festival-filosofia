@@ -25,7 +25,6 @@ export default define.page(function App({ Component }) {
       </head>
       <body>
         <Component />
-        <script dangerouslySetInnerHTML={{ __html: `(function(){function sync(){var btn=document.getElementById('ff-theme-btn');if(!btn)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var i=btn.querySelector('i');if(i)i.className='ti '+(dark?'ti-sun':'ti-moon');btn.setAttribute('aria-label',dark?'Passa al tema chiaro':'Passa al tema scuro');}sync();var btn=document.getElementById('ff-theme-btn');if(btn)btn.addEventListener('click',function(){var dark=document.documentElement.getAttribute('data-theme')==='dark';var next=dark?'light':'dark';document.documentElement.setAttribute('data-theme',next);try{localStorage.setItem('ff-theme',next);}catch(e){}sync();});})();` }} />
       </body>
     </html>
   );

@@ -673,3 +673,117 @@ html[data-theme="dark"] .notepad-lines-bg {
     rgba(255, 255, 255, 0.06) 28px
   );
 }
+
+/* NAV CONTROLS (fixed top-right) */
+.ff-nav-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 200;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* NAV BURGER BUTTON */
+.ff-nav-btn {
+  background: none;
+  border: 1px solid var(--ff-border);
+  color: var(--ff-gray);
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+
+  &:hover {
+    color: var(--ff-text);
+    border-color: var(--ff-gray);
+    background: var(--ff-gray-light);
+  }
+}
+
+.ff-nav-burger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 16px;
+}
+
+.ff-nav-line {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 0.25s ease;
+  transform-origin: center;
+}
+
+.ff-nav-btn.open .ff-nav-line:nth-child(1) {
+  transform: translateY(3.25px) rotate(45deg);
+}
+
+.ff-nav-btn.open .ff-nav-line:nth-child(2) {
+  transform: translateY(-3.25px) rotate(-45deg);
+}
+
+/* NAV OVERLAY */
+.ff-nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 199;
+  background: var(--ff-white);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0s 0.25s;
+}
+
+.ff-nav-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s ease, visibility 0s 0s;
+}
+
+/* NAV FULLSCREEN MENU */
+.ff-nav-menu {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0 28px;
+}
+
+.ff-nav-item {
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--ff-border);
+  color: var(--ff-black);
+  cursor: pointer;
+  font-family: 'EB Garamond', serif;
+  font-size: calc(36px * var(--fs));
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  padding: 20px 0;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  transition: color 0.15s, opacity 0.15s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
+  &:first-child {
+    border-top: 1px solid var(--ff-border);
+  }
+
+  &:hover {
+    color: var(--ff-red);
+  }
+}
