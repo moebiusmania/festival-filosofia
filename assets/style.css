@@ -335,6 +335,23 @@ body {
   padding: 10px 10px;
   border-top: 1px solid var(--ff-border);
   align-items: flex-start;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.prog-event--bookmarked {
+  background: var(--ff-red-light);
+  border-left: 3px solid var(--ff-red);
+  padding-left: 7px;
+}
+
+.prog-bookmark-icon {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 18px;
+  color: var(--ff-red);
+  align-self: center;
 }
 
 .prog-time {
@@ -378,8 +395,17 @@ body {
   font-size: calc(11px * var(--fs));
   color: var(--ff-gray);
   font-style: italic;
+  margin-bottom: 4px;
+  font-weight: 300;
+}
+
+.prog-bookmark-hint {
+  font-size: calc(11px * var(--fs));
+  color: var(--ff-gray);
   margin-bottom: 14px;
   font-weight: 300;
+
+  .ti { font-size: 11px; vertical-align: -1px; color: var(--ff-red); }
 }
 
 /* HOTEL */
