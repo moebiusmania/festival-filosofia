@@ -632,23 +632,22 @@ body {
 /* THEME BUTTON */
 .ff-theme-btn {
   background: none;
-  border: 1px solid var(--ff-border);
+  border: none;
   color: var(--ff-gray);
   cursor: pointer;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(14px * var(--fs));
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  font-size: calc(18px * var(--fs));
+  transition: color 0.15s, background 0.15s;
   flex-shrink: 0;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 
   &:hover {
     color: var(--ff-text);
-    border-color: var(--ff-gray);
     background: var(--ff-gray-light);
   }
 }
@@ -700,35 +699,32 @@ html[data-theme="dark"] .notepad-lines-bg {
   );
 }
 
-/* NAV CONTROLS (fixed top-right) */
+/* NAV CONTROLS */
 .ff-nav-controls {
-  position: fixed;
-  top: 20px;
-  right: 20px;
+  position: relative;
   z-index: 200;
   display: flex;
-  gap: 8px;
+  gap: 4px;
   align-items: center;
 }
 
 /* NAV BURGER BUTTON */
 .ff-nav-btn {
   background: none;
-  border: 1px solid var(--ff-border);
+  border: none;
   color: var(--ff-gray);
   cursor: pointer;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  transition: color 0.15s, background 0.15s;
 
   &:hover {
     color: var(--ff-text);
-    border-color: var(--ff-gray);
     background: var(--ff-gray-light);
   }
 }
@@ -774,6 +770,23 @@ html[data-theme="dark"] .notepad-lines-bg {
   transition: opacity 0.25s ease, visibility 0s 0s;
 }
 
+/* NAV OVERLAY TITLE */
+.ff-nav-title {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'EB Garamond', serif;
+  font-size: calc(22px * var(--fs));
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--ff-black);
+  pointer-events: none;
+
+  em { font-style: italic; }
+}
+
 /* NAV FULLSCREEN MENU */
 .ff-nav-menu {
   position: absolute;
@@ -793,7 +806,7 @@ html[data-theme="dark"] .notepad-lines-bg {
   color: var(--ff-black);
   cursor: pointer;
   font-family: 'EB Garamond', serif;
-  font-size: calc(36px * var(--fs));
+  font-size: calc(26px * var(--fs));
   font-style: italic;
   font-weight: 400;
   letter-spacing: 0.02em;

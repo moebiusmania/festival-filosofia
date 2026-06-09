@@ -2,9 +2,10 @@ import { useEffect } from "preact/hooks";
 import { useSignal } from "@preact/signals";
 
 const MENU_ITEMS = [
+  { label: "Come funziona", sectionId: "info" },
   { label: "Alloggio", sectionId: "hotel" },
   { label: "Lista ristoranti", sectionId: "ristoranti" },
-  { label: "Come funziona", sectionId: "info" },
+  { label: "Dati Locali", sectionId: "note" },
 ];
 
 export default function NavMenu() {
@@ -79,6 +80,9 @@ export default function NavMenu() {
         aria-hidden={!open.value}
         onClick={() => { open.value = false; }}
       >
+        <div class="ff-nav-title" aria-hidden="true">
+          festival<em>filosofia</em>
+        </div>
         <nav class="ff-nav-menu">
           {MENU_ITEMS.map(({ label, sectionId }) => (
             <button

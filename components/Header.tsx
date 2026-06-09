@@ -1,8 +1,11 @@
+import NavMenu from "../islands/NavMenu.tsx";
+
 export default function Header() {
   return (
     <header class="ff-header">
       <div class="ff-header-top">
         <div class="edition-tag">XXVI edizione · companion app</div>
+        <NavMenu />
       </div>
       <h1 class="logo-line">
         festival<em>filosofia</em>
