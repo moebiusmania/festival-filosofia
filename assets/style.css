@@ -832,6 +832,22 @@ html[data-theme="dark"] .notepad-lines-bg {
   }
 }
 
+/* INNER PAGES */
+.ff-page {
+  flex: 1;
+  padding: 28px 20px;
+
+  h2 {
+    font-family: 'EB Garamond', serif;
+    font-size: calc(22px * var(--fs));
+    font-weight: 500;
+    color: var(--ff-black);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ff-border);
+  }
+}
+
 /* DATI LOCALI PAGE */
 .dati-locali-page {
   flex: 1;

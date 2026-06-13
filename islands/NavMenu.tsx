@@ -1,13 +1,10 @@
 import { useEffect } from "preact/hooks";
 import { useSignal } from "@preact/signals";
 
-const MENU_ITEMS: Array<
-  { label: string; sectionId: string; href?: never } |
-  { label: string; href: string; sectionId?: never }
-> = [
-  { label: "Come funziona", sectionId: "info" },
-  { label: "Alloggio", sectionId: "hotel" },
-  { label: "Lista ristoranti", sectionId: "ristoranti" },
+const MENU_ITEMS: Array<{ label: string; href: string }> = [
+  { label: "Come funziona", href: "/info" },
+  { label: "Alloggio", href: "/hotel" },
+  { label: "Lista ristoranti", href: "/ristoranti" },
   { label: "Dati locali", href: "/local-data" },
 ];
 
@@ -47,24 +44,6 @@ export default function NavMenu() {
       } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
-    }, 300);
-  }
-
-  function goTo(sectionId: string) {
-    open.value = false;
-    setTimeout(() => {
-      if (window.location.pathname !== "/") {
-        window.location.href = "/";
-        return;
-      }
-      const section = document.querySelector(`[data-id="${sectionId}"]`);
-      if (!section) return;
-      if (!section.classList.contains("open")) {
-        (
-          section.querySelector(".ff-section-header") as HTMLButtonElement | null
-        )?.click();
-      }
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 300);
   }
 
@@ -109,19 +88,15 @@ export default function NavMenu() {
           >
             Torna all'inizio
           </button>
-          {MENU_ITEMS.map(({ label, sectionId, href }) => (
+          {MENU_ITEMS.map(({ label, href }) => (
             <button
-              key={sectionId ?? href}
+              key={href}
               class="ff-nav-item"
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                if (href) {
-                  open.value = false;
-                  window.location.href = href;
-                } else {
-                  goTo(sectionId!);
-                }
+                open.value = false;
+                window.location.href = href;
               }}
             >
               {label}
