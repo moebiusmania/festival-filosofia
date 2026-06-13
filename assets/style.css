@@ -94,6 +94,11 @@ body {
     color: var(--ff-gray);
   }
 
+  .logo-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
   .logo-line {
     font-family: 'EB Garamond', serif;
     font-size: calc(28px * var(--fs));

@@ -8,7 +8,7 @@ export default function Header() {
         <NavMenu />
       </div>
       <h1 class="logo-line">
-        festival<em>filosofia</em>
+        <a href="/" class="logo-link">festival<em>filosofia</em></a>
       </h1>
       <div class="theme-block">
         <span class="theme-label">tema</span>
