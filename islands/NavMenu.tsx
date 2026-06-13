@@ -1,11 +1,14 @@
 import { useEffect } from "preact/hooks";
 import { useSignal } from "@preact/signals";
 
-const MENU_ITEMS = [
+const MENU_ITEMS: Array<
+  { label: string; sectionId: string; href?: never } |
+  { label: string; href: string; sectionId?: never }
+> = [
   { label: "Come funziona", sectionId: "info" },
   { label: "Alloggio", sectionId: "hotel" },
   { label: "Lista ristoranti", sectionId: "ristoranti" },
-  { label: "Dati Locali", sectionId: "note" },
+  { label: "Dati locali", href: "/local-data" },
 ];
 
 export default function NavMenu() {
@@ -36,9 +39,24 @@ export default function NavMenu() {
     } catch (_) { /* ignore */ }
   }
 
+  function goHome() {
+    open.value = false;
+    setTimeout(() => {
+      if (window.location.pathname !== "/") {
+        window.location.href = "/";
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }, 300);
+  }
+
   function goTo(sectionId: string) {
     open.value = false;
     setTimeout(() => {
+      if (window.location.pathname !== "/") {
+        window.location.href = "/";
+        return;
+      }
       const section = document.querySelector(`[data-id="${sectionId}"]`);
       if (!section) return;
       if (!section.classList.contains("open")) {
@@ -84,12 +102,27 @@ export default function NavMenu() {
           festival<em>filosofia</em>
         </div>
         <nav class="ff-nav-menu">
-          {MENU_ITEMS.map(({ label, sectionId }) => (
+          <button
+            class="ff-nav-item"
+            type="button"
+            onClick={(e) => { e.stopPropagation(); goHome(); }}
+          >
+            Torna all'inizio
+          </button>
+          {MENU_ITEMS.map(({ label, sectionId, href }) => (
             <button
-              key={sectionId}
+              key={sectionId ?? href}
               class="ff-nav-item"
               type="button"
-              onClick={(e) => { e.stopPropagation(); goTo(sectionId); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (href) {
+                  open.value = false;
+                  window.location.href = href;
+                } else {
+                  goTo(sectionId!);
+                }
+              }}
             >
               {label}
             </button>
