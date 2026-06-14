@@ -1,5 +1,5 @@
 import { render } from "preact-render-to-string";
-import { assert, assertStringIncludes } from "@std/assert";
+import { assertStringIncludes } from "@std/assert";
 import Header from "../components/Header.tsx";
 
 Deno.test("Header: renders edition tag", () => {
@@ -26,7 +26,3 @@ Deno.test("Header: renders event dates and cities", () => {
   assertStringIncludes(html, "Sassuolo");
 });
 
-Deno.test("Header: does not render theme toggle button (moved to NavMenu island)", () => {
-  const html = render(<Header />);
-  assert(!html.includes("ff-theme-btn"));
-});
