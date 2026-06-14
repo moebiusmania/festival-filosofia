@@ -1,6 +1,6 @@
 import { useState } from "preact/hooks";
 
-const LOCAL_KEYS = ["ff2026-notes", "ff-theme", "ff2026-bookmarks", "ff2026-hotel"];
+const LOCAL_KEYS = ["ff2026-notes", "ff-theme", "ff2026-bookmarks", "ff2026-hotel", "ff2026-lista-ristoranti"];
 
 export default function DatiLocali() {
   const [deleted, setDeleted] = useState(false);

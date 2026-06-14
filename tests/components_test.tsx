@@ -136,6 +136,13 @@ Deno.test("RistorantiSection: renders restaurant numbering", () => {
   assertStringIncludes(html, "02");
 });
 
+Deno.test("RistorantiSection: shows sample data hint when no localStorage data", () => {
+  const html = render(<RistorantiSection />);
+  assertStringIncludes(html, "risto-sample-hint");
+  assertStringIncludes(html, "Dati di esempio");
+  assertStringIncludes(html, 'href="/ristoranti"');
+});
+
 // ── NotePad ──────────────────────────────────────────────────────────────────
 
 Deno.test("NotePad: renders label", () => {

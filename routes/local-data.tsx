@@ -18,6 +18,8 @@ export default define.page(function DatiLocaliPage() {
           <li>Le note del taccuino personale</li>
           <li>La preferenza per il tema (chiaro / scuro)</li>
           <li>Gli eventi del programma salvati con il segnalibro</li>
+          <li>I dati dell'alloggio</li>
+          <li>La lista dei ristoranti</li>
         </ul>
         <p>
           Puoi eliminare tutti i dati premendo il pulsante qui sotto. L'operazione
