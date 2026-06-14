@@ -28,7 +28,9 @@ function Event({ id, time, place, speaker, children, bookmarked, onToggle }: Eve
         <div class="prog-place">{place}</div>
       </div>
       {bookmarked && (
-        <i class="ti ti-bookmark-filled prog-bookmark-icon" aria-hidden="true" />
+        <svg class="prog-bookmark-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 2H6a2 2 0 0 0-2 2v18l8-4 8 4V4a2 2 0 0 0-2-2z" />
+        </svg>
       )}
     </div>
   );

@@ -346,16 +346,36 @@ body {
 }
 
 .prog-event--bookmarked {
-  background: var(--ff-red-light);
-  border-left: 3px solid var(--ff-red);
+  background: var(--ff-red);
+  border-left: 3px solid var(--ff-red-dark);
   padding-left: 7px;
+}
+
+.prog-event--bookmarked .prog-time {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.prog-event--bookmarked .prog-info .prog-title {
+  color: #fff;
+
+  em { color: #fff; }
+}
+
+.prog-event--bookmarked .prog-info .prog-speaker {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.prog-event--bookmarked .prog-info .prog-place {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .prog-bookmark-icon {
   margin-left: auto;
   flex-shrink: 0;
-  font-size: 18px;
-  color: var(--ff-red);
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  fill: #fff;
   align-self: center;
 }
 
