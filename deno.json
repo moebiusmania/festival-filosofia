@@ -32,7 +32,7 @@
     "jsxPrecompileSkipElements": [
       "a", "img", "source", "body", "html", "head",
       "title", "meta", "script", "link", "style",
-      "base", "noscript", "template"
+      "base", "noscript", "template", "iframe"
     ],
     "types": ["vite/client"]
   }

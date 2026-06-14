@@ -94,27 +94,28 @@ Deno.test("ProgrammaSection: no events are bookmarked in initial render", () => 
 });
 
 // ── HotelSection ─────────────────────────────────────────────────────────────
+// useEffect does not run in SSR, so the component always renders the empty
+// state (no localStorage data available) during server-side rendering.
 
-Deno.test("HotelSection: renders hotel name", () => {
+Deno.test("HotelSection: renders empty state when no localStorage data", () => {
   const html = render(<HotelSection />);
-  assertStringIncludes(html, "Hotel Canalgrande");
+  assertStringIncludes(html, "hotel-empty");
+  assertStringIncludes(html, "Nessun alloggio configurato");
 });
 
-Deno.test("HotelSection: renders hotel address", () => {
+Deno.test("HotelSection: empty state contains link to /hotel page", () => {
   const html = render(<HotelSection />);
-  assertStringIncludes(html, "Corso Canalgrande 6");
-  assertStringIncludes(html, "Modena");
+  assertStringIncludes(html, 'href="/hotel"');
 });
 
-Deno.test("HotelSection: renders group booking reference", () => {
+Deno.test("HotelSection: does not render hotel card in empty state", () => {
   const html = render(<HotelSection />);
-  assertStringIncludes(html, "FF2026-GRP");
+  assert(!html.includes("hotel-wrap"), "hotel card should not appear without saved data");
 });
 
-Deno.test("HotelSection: renders check-in and check-out times", () => {
+Deno.test("HotelSection: does not render map placeholder in empty state", () => {
   const html = render(<HotelSection />);
-  assertStringIncludes(html, "Check-in 15:00");
-  assertStringIncludes(html, "Check-out 11:00");
+  assert(!html.includes("hotel-map-ph"), "map placeholder should not appear without saved data");
 });
 
 // ── RistorantiSection ────────────────────────────────────────────────────────

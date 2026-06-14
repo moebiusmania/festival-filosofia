@@ -486,6 +486,153 @@ body {
   margin-top: 6px;
 }
 
+.hotel-empty {
+  font-size: calc(13px * var(--fs));
+  color: var(--ff-text-muted);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.hotel-empty-link,
+.hotel-edit-link {
+  color: var(--ff-red);
+  text-decoration: none;
+  font-style: normal;
+
+  &:hover { text-decoration: underline; }
+}
+
+.hotel-edit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  font-size: calc(12px * var(--fs));
+  font-weight: 400;
+  font-style: normal;
+
+  i { font-size: calc(13px * var(--fs)); }
+}
+
+.hotel-map-iframe {
+  display: block;
+  width: 100%;
+  height: 220px;
+  border: none;
+}
+
+/* ALLOGGIO FORM */
+.hotel-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hotel-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hotel-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.hotel-form-label {
+  font-size: calc(10px * var(--fs));
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ff-text-muted);
+}
+
+.hotel-form-required {
+  color: var(--ff-red);
+}
+
+.hotel-form-input,
+.hotel-form-textarea {
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: calc(14px * var(--fs));
+  font-weight: 300;
+  color: var(--ff-text);
+  background: var(--ff-white);
+  border: 1px solid var(--ff-border);
+  padding: 9px 12px;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+
+  &:focus { border-color: var(--ff-black); }
+  &::placeholder { color: var(--ff-gray); }
+}
+
+.hotel-form-textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.hotel-form-input--error {
+  border-color: var(--ff-red);
+}
+
+.hotel-form-hint {
+  font-size: calc(11px * var(--fs));
+  color: var(--ff-gray);
+  font-weight: 300;
+
+  code {
+    font-family: monospace;
+    font-size: calc(11px * var(--fs));
+  }
+}
+
+.hotel-form-error {
+  font-size: calc(11px * var(--fs));
+  color: var(--ff-red);
+  font-weight: 400;
+}
+
+.hotel-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.hotel-form-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 20px;
+  background: var(--ff-black);
+  color: var(--ff-white);
+  border: none;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: calc(13px * var(--fs));
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover { background: var(--ff-near-black); }
+
+  i { font-size: calc(15px * var(--fs)); }
+}
+
+.hotel-form-saved {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: calc(13px * var(--fs));
+  font-weight: 400;
+  color: var(--ff-text-muted);
+
+  i { font-size: calc(15px * var(--fs)); color: var(--ff-red); }
+}
+
 /* RISTORANTI */
 .risto-item {
   display: flex;

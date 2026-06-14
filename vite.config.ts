@@ -3,4 +3,8 @@ import { fresh } from "@fresh/plugin-vite";
 
 export default defineConfig({
   plugins: [fresh()],
+  server: {
+    port: 3000,
+    strictPort: true,
+  },
 });
