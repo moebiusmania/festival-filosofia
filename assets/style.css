@@ -355,6 +355,10 @@ body {
   color: rgba(255, 255, 255, 0.85);
 }
 
+.prog-event--bookmarked .prog-info .prog-category {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 .prog-event--bookmarked .prog-info .prog-title {
   color: #fff;
 
