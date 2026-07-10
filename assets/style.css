@@ -277,45 +277,125 @@ body {
 }
 
 /* MAPPA */
-.map-ph {
-  border: 1px solid var(--ff-border);
-  height: 280px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--ff-gray-light);
-  margin-bottom: 14px;
-
-  i { font-size: calc(32px * var(--fs)); color: var(--ff-gray); }
-  p { font-size: calc(12px * var(--fs)); color: var(--ff-gray); text-align: center; line-height: 1.5; font-weight: 300; }
-}
-
-.cities-row {
+.ff-map-filter {
   display: flex;
   gap: 0;
   border: 1px solid var(--ff-border);
+  margin-bottom: 12px;
 }
 
-.city-item {
+.ff-map-filter-btn {
   flex: 1;
   padding: 10px 6px;
   text-align: center;
+  border: none;
   border-right: 1px solid var(--ff-border);
-  font-size: calc(12px * var(--fs));
+  background: var(--ff-white);
   color: var(--ff-text-muted);
+  font-family: inherit;
+  font-size: calc(13px * var(--fs));
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
 
   &:last-child { border-right: none; }
+  &:hover { background: var(--ff-gray-light); }
+
+  &.active {
+    background: var(--ff-red);
+    color: var(--ff-white);
+  }
+}
+
+.ff-map {
+  height: 320px;
+  border: 1px solid var(--ff-border);
+  background: var(--ff-gray-light);
+  isolation: isolate;
+  z-index: 0;
+}
+
+.ff-map-note {
+  margin-top: 10px;
+  font-size: calc(12px * var(--fs));
+  color: var(--ff-text-muted);
+  font-weight: 300;
+
+  i { color: var(--ff-red); }
+}
+
+/* Custom filled SVG pins, coloured per city. */
+.ff-map-pin {
+  display: block;
+  width: 30px;
+  height: 30px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+
+  path {
+    fill: currentColor;
+    stroke: var(--ff-white);
+    stroke-width: 1.2;
+  }
+
+  circle { fill: var(--ff-white); }
+}
+
+.ff-map-pin--modena { color: var(--ff-red); }
+.ff-map-pin--carpi { color: #2c6e8f; }
+.ff-map-pin--sassuolo { color: #4a7c59; }
+
+.ff-map-popup {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 
   strong {
-    display: block;
     font-family: 'EB Garamond', serif;
-    font-size: calc(14px * var(--fs));
+    font-size: calc(15px * var(--fs));
     color: var(--ff-near-black);
-    font-weight: 500;
-    margin-bottom: 2px;
   }
+
+  span {
+    font-size: calc(12px * var(--fs));
+    color: var(--ff-text-muted);
+  }
+
+  a {
+    margin-top: 4px;
+    font-size: calc(12px * var(--fs));
+    color: var(--ff-red);
+    text-decoration: none;
+    font-weight: 500;
+  }
+}
+
+/* Leaflet popup + attribution restyled to match the app in both themes. */
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--ff-white);
+  color: var(--ff-text);
+  border-radius: 2px;
+}
+
+.leaflet-container {
+  font-family: inherit;
+  background: var(--ff-gray-light);
+}
+
+.leaflet-control-attribution {
+  background: color-mix(in srgb, var(--ff-white) 85%, transparent);
+  color: var(--ff-text-muted);
+
+  a { color: var(--ff-red); }
+}
+
+html[data-theme="dark"] .leaflet-tile {
+  filter: brightness(0.75) contrast(1.05);
+}
+
+html[data-theme="dark"] .leaflet-control-zoom a {
+  background: var(--ff-gray-light);
+  color: var(--ff-text);
+  border-color: var(--ff-border);
 }
 
 /* PROGRAMMA */

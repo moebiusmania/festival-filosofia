@@ -1,0 +1,80 @@
+[
+  {
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "city": "Modena",
+    "lat": 44.645943,
+    "lng": 10.925617
+  },
+  {
+    "venue": "Accademia Nazionale di Scienze Lettere e Arti di Modena",
+    "city": "Modena",
+    "lat": 44.651096,
+    "lng": 10.930890
+  },
+  {
+    "venue": "Largo Porta Sant'Agostino",
+    "city": "Modena",
+    "lat": 44.648395,
+    "lng": 10.921647
+  },
+  {
+    "venue": "Piazza Sant'Agostino",
+    "city": "Modena",
+    "lat": 44.648100,
+    "lng": 10.920700
+  },
+  {
+    "venue": "Chiesa di San Carlo",
+    "city": "Modena",
+    "lat": 44.645541,
+    "lng": 10.927255
+  },
+  {
+    "venue": "Arena Spazio Culturale",
+    "city": "Modena",
+    "lat": 44.647703,
+    "lng": 10.919113
+  },
+  {
+    "venue": "Palazzo dei Musei",
+    "city": "Modena",
+    "lat": 44.648000,
+    "lng": 10.920533
+  },
+  {
+    "venue": "Tenda di Piazza XX settembre",
+    "city": "Modena",
+    "lat": 44.645179,
+    "lng": 10.926019
+  },
+  {
+    "venue": "Tenda di Piazzale Re Astolfo",
+    "city": "Carpi",
+    "lat": 44.782900,
+    "lng": 10.886700
+  },
+  {
+    "venue": "Piazza Martiri",
+    "city": "Carpi",
+    "lat": 44.783460,
+    "lng": 10.885273
+  },
+  {
+    "venue": "Campo di Fossoli",
+    "city": "Carpi",
+    "lat": 44.828014,
+    "lng": 10.902076
+  },
+  {
+    "venue": "Teatro Carani",
+    "city": "Sassuolo",
+    "lat": 44.540740,
+    "lng": 10.784008
+  },
+  {
+    "venue": "Piazza Garibaldi",
+    "city": "Sassuolo",
+    "lat": 44.540991,
+    "lng": 10.782904
+  }
+]

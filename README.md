@@ -22,6 +22,7 @@ Una piccola app web pensata per chi partecipa al festival: raccoglie in un unico
 - **Framework:** [Fresh 2](https://fresh.deno.dev/) (routing filesystem, islands architecture)
 - **UI:** [Preact](https://preactjs.com/) + [Preact Signals](https://preactjs.com/guide/v10/signals/)
 - **Bundler:** [Vite](https://vite.dev/) via `@fresh/plugin-vite`
+- **Mappa:** [Leaflet](https://leafletjs.com/) + tile [OpenStreetMap](https://www.openstreetmap.org/) (nessuna API key)
 - **Icone:** [Tabler Icons](https://tabler.io/icons) (CDN webfont)
 
 ## Setup locale
@@ -73,6 +74,7 @@ A small web app for festival attendees: it gathers practical information in one 
 - **Framework:** [Fresh 2](https://fresh.deno.dev/) (filesystem routing, islands architecture)
 - **UI:** [Preact](https://preactjs.com/) + [Preact Signals](https://preactjs.com/guide/v10/signals/)
 - **Bundler:** [Vite](https://vite.dev/) via `@fresh/plugin-vite`
+- **Map:** [Leaflet](https://leafletjs.com/) + [OpenStreetMap](https://www.openstreetmap.org/) tiles (no API key)
 - **Icons:** [Tabler Icons](https://tabler.io/icons) (CDN webfont)
 
 ## Local setup

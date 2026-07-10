@@ -37,28 +37,25 @@ Deno.test("InfoSection: renders all three cities in description", () => {
 });
 
 // ── MapSection ───────────────────────────────────────────────────────────────
+// Leaflet is loaded client-side inside useEffect, so SSR only emits the shell:
+// the filter buttons and the (empty) map container. Pins are hydrated later.
 
-Deno.test("MapSection: renders placeholder text", () => {
+Deno.test("MapSection: renders the map container", () => {
   const html = render(<MapSection />);
-  assertStringIncludes(html, "Mappa interattiva non ancora disponibile");
+  assertStringIncludes(html, 'class="ff-map"');
 });
 
-Deno.test("MapSection: renders availability date", () => {
+Deno.test("MapSection: renders the city filter buttons", () => {
   const html = render(<MapSection />);
-  assertStringIncludes(html, "luglio 2026");
-});
-
-Deno.test("MapSection: renders all three cities", () => {
-  const html = render(<MapSection />);
+  assertStringIncludes(html, "Tutte");
   assertStringIncludes(html, "Modena");
   assertStringIncludes(html, "Carpi");
   assertStringIncludes(html, "Sassuolo");
 });
 
-Deno.test("MapSection: renders city venue details", () => {
+Deno.test("MapSection: does not embed pins in SSR output", () => {
   const html = render(<MapSection />);
-  assertStringIncludes(html, "Piazza Martiri");
-  assertStringIncludes(html, "Piazza Garibaldi");
+  assert(!html.includes("ff-map-pin"), "pins are added client-side only");
 });
 
 // ── ProgrammaSection ─────────────────────────────────────────────────────────
