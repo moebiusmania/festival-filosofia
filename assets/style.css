@@ -406,6 +406,15 @@ body {
     font-family: 'EB Garamond', serif;
   }
 
+  .prog-category {
+    font-size: calc(9px * var(--fs));
+    color: var(--ff-red);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
   .prog-place {
     font-size: calc(10px * var(--fs));
     color: var(--ff-gray);
@@ -414,6 +423,49 @@ body {
     text-transform: uppercase;
     font-weight: 500;
   }
+}
+
+.prog-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.prog-filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.prog-filter {
+  font-family: inherit;
+  font-size: calc(11px * var(--fs));
+  letter-spacing: 0.03em;
+  padding: 5px 12px;
+  border: 1px solid var(--ff-border);
+  background: transparent;
+  color: var(--ff-text-muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.prog-filter:hover {
+  border-color: var(--ff-red);
+  color: var(--ff-near-black);
+}
+
+.prog-filter--active {
+  background: var(--ff-red);
+  border-color: var(--ff-red);
+  color: #fff;
+}
+
+.prog-empty {
+  font-size: calc(12px * var(--fs));
+  color: var(--ff-gray);
+  font-style: italic;
+  padding: 12px 0;
 }
 
 .prog-disclaimer {

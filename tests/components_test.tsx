@@ -68,24 +68,36 @@ Deno.test("ProgrammaSection: renders disclaimer", () => {
   assertStringIncludes(html, "Programma indicativo");
 });
 
-Deno.test("ProgrammaSection: renders all three day headers", () => {
+Deno.test("ProgrammaSection: renders day headers for days present in data", () => {
   const html = render(<ProgrammaSection />);
   assertStringIncludes(html, "Venerdì 18 settembre");
   assertStringIncludes(html, "Sabato 19 settembre");
-  assertStringIncludes(html, "Domenica 20 settembre");
 });
 
-Deno.test("ProgrammaSection: renders speaker names", () => {
+Deno.test("ProgrammaSection: renders speaker names from the official program", () => {
   const html = render(<ProgrammaSection />);
-  assertStringIncludes(html, "Massimo Cacciari");
-  assertStringIncludes(html, "Michela Marzano");
   assertStringIncludes(html, "Stefano Massini");
+  assertStringIncludes(html, "David Armitage");
+  assertStringIncludes(html, "Nadia Fusini");
 });
 
-Deno.test("ProgrammaSection: renders opening and closing events", () => {
+Deno.test("ProgrammaSection: renders day filter buttons", () => {
   const html = render(<ProgrammaSection />);
-  assertStringIncludes(html, "Apertura del festival");
-  assertStringIncludes(html, "Chiusura del festival");
+  assertStringIncludes(html, "Tutti i giorni");
+  assertStringIncludes(html, "Venerdì 18");
+});
+
+Deno.test("ProgrammaSection: renders location filter buttons for each city", () => {
+  const html = render(<ProgrammaSection />);
+  assertStringIncludes(html, "Tutte le sedi");
+  assertStringIncludes(html, "Modena");
+  assertStringIncludes(html, "Carpi");
+  assertStringIncludes(html, "Sassuolo");
+});
+
+Deno.test("ProgrammaSection: renders event categories", () => {
+  const html = render(<ProgrammaSection />);
+  assertStringIncludes(html, "Lezione magistrale");
 });
 
 Deno.test("ProgrammaSection: no events are bookmarked in initial render", () => {

@@ -1,31 +1,55 @@
-import { useEffect, useState } from "preact/hooks";
-import type { ComponentChildren } from "preact";
+import { useEffect, useMemo, useState } from "preact/hooks";
+import programma from "../../data/programma.json" with { type: "json" };
+
+interface ProgEvent {
+  id: string;
+  day: string;
+  time: string;
+  city: string;
+  venue: string;
+  speaker?: string;
+  title: string;
+  category: string;
+}
+
+const EVENTS = programma as ProgEvent[];
+
+// Day codes in chronological order, with their display labels.
+const DAYS = [
+  { code: "ven", label: "Venerdì 18" },
+  { code: "sab", label: "Sabato 19" },
+  { code: "dom", label: "Domenica 20" },
+];
+
+// Preferred display order for the location filter.
+const CITY_ORDER = ["Modena", "Carpi", "Sassuolo"];
+
+const STORAGE_KEY = "ff2026-bookmarks";
 
 interface EventProps {
-  id: string;
-  time: string;
-  place: string;
-  speaker?: string;
-  children: ComponentChildren;
+  event: ProgEvent;
   bookmarked: boolean;
   onToggle: (id: string) => void;
 }
 
-function Event({ id, time, place, speaker, children, bookmarked, onToggle }: EventProps) {
+function Event({ event, bookmarked, onToggle }: EventProps) {
   return (
     <div
       class={`prog-event${bookmarked ? " prog-event--bookmarked" : ""}`}
-      onClick={() => onToggle(id)}
+      onClick={() => onToggle(event.id)}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onToggle(id); }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") onToggle(event.id);
+      }}
       aria-pressed={bookmarked}
     >
-      <div class="prog-time">{time}</div>
+      <div class="prog-time">{event.time}</div>
       <div class="prog-info">
-        <div class="prog-title">{children}</div>
-        {speaker && <div class="prog-speaker">{speaker}</div>}
-        <div class="prog-place">{place}</div>
+        <div class="prog-category">{event.category}</div>
+        <div class="prog-title">{event.title}</div>
+        {event.speaker && <div class="prog-speaker">{event.speaker}</div>}
+        <div class="prog-place">{event.venue} · {event.city}</div>
       </div>
       {bookmarked && (
         <svg class="prog-bookmark-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -36,16 +60,16 @@ function Event({ id, time, place, speaker, children, bookmarked, onToggle }: Eve
   );
 }
 
-const STORAGE_KEY = "ff2026-bookmarks";
-
 export default function ProgrammaSection() {
   const [bookmarks, setBookmarks] = useState<Set<string>>(new Set());
+  const [dayFilter, setDayFilter] = useState<string>("all");
+  const [cityFilter, setCityFilter] = useState<string>("all");
 
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) setBookmarks(new Set(JSON.parse(saved)));
-    } catch {}
+    } catch { /* ignore */ }
   }, []);
 
   function toggle(id: string) {
@@ -55,18 +79,30 @@ export default function ProgrammaSection() {
       else next.add(id);
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify([...next]));
-      } catch {}
+      } catch { /* ignore */ }
       return next;
     });
   }
 
-  function event(id: string, time: string, place: string, speaker: string | undefined, children: ComponentChildren) {
-    return (
-      <Event id={id} time={time} place={place} speaker={speaker} bookmarked={bookmarks.has(id)} onToggle={toggle}>
-        {children}
-      </Event>
-    );
-  }
+  // Only surface filter options that actually appear in the data.
+  const days = useMemo(
+    () => DAYS.filter((d) => EVENTS.some((e) => e.day === d.code)),
+    [],
+  );
+  const cities = useMemo(() => {
+    const present = new Set(EVENTS.map((e) => e.city));
+    return CITY_ORDER.filter((c) => present.has(c));
+  }, []);
+
+  const visible = useMemo(
+    () =>
+      EVENTS.filter(
+        (e) =>
+          (dayFilter === "all" || e.day === dayFilter) &&
+          (cityFilter === "all" || e.city === cityFilter),
+      ),
+    [dayFilter, cityFilter],
+  );
 
   return (
     <>
@@ -79,28 +115,73 @@ export default function ProgrammaSection() {
         {" "}— tocca di nuovo per rimuoverlo.
       </p>
 
-      <div class="prog-day">
-        <div class="prog-day-header">Venerdì 18 settembre</div>
-        {event("ven-10", "10:00", "Piazza Grande · Modena", undefined, "Apertura del festival")}
-        {event("ven-11", "11:00", "Piazza Grande · Modena", "Massimo Cacciari", <em>Il caos come principio cosmologico</em>)}
-        {event("ven-15", "15:00", "Piazza Martiri · Carpi", "Elena Castellucci", <em>Ordine e disordine nelle scienze naturali</em>)}
-        {event("ven-21", "21:00", "Cortile Palazzo Ducale · Modena", undefined, <>Concerto filosofico: <em>Musica e caos</em></>)}
+      <div class="prog-filters">
+        <div class="prog-filter-group" role="group" aria-label="Filtra per giorno">
+          <button
+            type="button"
+            class={`prog-filter${dayFilter === "all" ? " prog-filter--active" : ""}`}
+            aria-pressed={dayFilter === "all"}
+            onClick={() => setDayFilter("all")}
+          >
+            Tutti i giorni
+          </button>
+          {days.map((d) => (
+            <button
+              key={d.code}
+              type="button"
+              class={`prog-filter${dayFilter === d.code ? " prog-filter--active" : ""}`}
+              aria-pressed={dayFilter === d.code}
+              onClick={() => setDayFilter(d.code)}
+            >
+              {d.label}
+            </button>
+          ))}
+        </div>
+
+        <div class="prog-filter-group" role="group" aria-label="Filtra per luogo">
+          <button
+            type="button"
+            class={`prog-filter${cityFilter === "all" ? " prog-filter--active" : ""}`}
+            aria-pressed={cityFilter === "all"}
+            onClick={() => setCityFilter("all")}
+          >
+            Tutte le sedi
+          </button>
+          {cities.map((c) => (
+            <button
+              key={c}
+              type="button"
+              class={`prog-filter${cityFilter === c ? " prog-filter--active" : ""}`}
+              aria-pressed={cityFilter === c}
+              onClick={() => setCityFilter(c)}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div class="prog-day">
-        <div class="prog-day-header">Sabato 19 settembre</div>
-        {event("sab-10", "10:00", "Piazza Grande · Modena", "Barbara Carnevali", <em>Il caos nella politica contemporanea</em>)}
-        {event("sab-14", "14:00", "Palazzo dei Musei · Modena", undefined, <>Laboratorio ragazzi: <em>Creare ordine dal caos</em></>)}
-        {event("sab-17", "17:30", "Piazza Garibaldi · Sassuolo", "Daniele Francesconi", <em>Caos, caso e libertà</em>)}
-        {event("sab-20", "20:30", "Ex-fonderia · Modena", undefined, <>Cena filosofica <em>(su prenotazione)</em></>)}
-      </div>
+      {days
+        .filter((d) => visible.some((e) => e.day === d.code))
+        .map((d) => (
+          <div class="prog-day" key={d.code}>
+            <div class="prog-day-header">{d.label} settembre</div>
+            {visible
+              .filter((e) => e.day === d.code)
+              .map((e) => (
+                <Event
+                  key={e.id}
+                  event={e}
+                  bookmarked={bookmarks.has(e.id)}
+                  onToggle={toggle}
+                />
+              ))}
+          </div>
+        ))}
 
-      <div class="prog-day">
-        <div class="prog-day-header">Domenica 20 settembre</div>
-        {event("dom-10", "10:30", "Piazza Grande · Modena", "Michela Marzano", <em>Il caos digitale e l'intelligenza artificiale</em>)}
-        {event("dom-15", "15:00", "Piazza Grande · Modena", "Stefano Massini", <em>Dal caos al cosmo — e ritorno</em>)}
-        {event("dom-18", "18:00", "Piazza Grande · Modena", undefined, "Chiusura del festival")}
-      </div>
+      {visible.length === 0 && (
+        <p class="prog-empty">Nessun evento per i filtri selezionati.</p>
+      )}
     </>
   );
 }

@@ -1,0 +1,679 @@
+[
+  {
+    "id": "ff-01",
+    "day": "ven",
+    "time": "10:00",
+    "city": "Modena",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Nicola Panichi",
+    "title": "Saggi",
+    "category": "La lezione dei classici"
+  },
+  {
+    "id": "ff-02",
+    "day": "ven",
+    "time": "10:00",
+    "city": "Carpi",
+    "venue": "Tenda di Piazzale Re Astolfo",
+    "speaker": "Franco Ferrari",
+    "title": "Timeo",
+    "category": "La lezione dei classici"
+  },
+  {
+    "id": "ff-03",
+    "day": "ven",
+    "time": "10:00",
+    "city": "Sassuolo",
+    "venue": "Teatro Carani",
+    "speaker": "Gianni Paganini",
+    "title": "Nuova scienza e scienza civile",
+    "category": "La lezione dei classici"
+  },
+  {
+    "id": "ff-04",
+    "day": "ven",
+    "time": "11:00",
+    "city": "Carpi",
+    "venue": "Tenda di Piazzale Re Astolfo",
+    "speaker": "Gregorio Baldin",
+    "title": "Leviatano",
+    "category": "La lezione dei classici"
+  },
+  {
+    "id": "ff-05",
+    "day": "ven",
+    "time": "11:30",
+    "city": "Modena",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Cristina Guarnieri",
+    "title": "Sull'Iliade",
+    "category": "La lezione dei classici"
+  },
+  {
+    "id": "ff-06",
+    "day": "ven",
+    "time": "11:30",
+    "city": "Sassuolo",
+    "venue": "Teatro Carani",
+    "speaker": "Anna Loretoni",
+    "title": "Per la pace perpetua",
+    "category": "La lezione dei classici"
+  },
+  {
+    "id": "ff-07",
+    "day": "ven",
+    "time": "15:00",
+    "city": "Modena",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "David Armitage",
+    "title": "Guerre civili",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-08",
+    "day": "ven",
+    "time": "15:00",
+    "city": "Carpi",
+    "venue": "Tenda di Piazzale Re Astolfo",
+    "speaker": "Mariarosaria Taddeo",
+    "title": "Chi decide?",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-09",
+    "day": "ven",
+    "time": "15:00",
+    "city": "Sassuolo",
+    "venue": "Teatro Carani",
+    "speaker": "Matteo Vegetti",
+    "title": "Potere dall'aria",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-10",
+    "day": "ven",
+    "time": "16:30",
+    "city": "Modena",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Stefano Massini",
+    "title": "Il banchetto della crudeltà",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-11",
+    "day": "ven",
+    "time": "16:30",
+    "city": "Modena",
+    "venue": "Accademia Nazionale di Scienze Lettere e Arti di Modena",
+    "title": "C'è ordine nel caos?",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-12",
+    "day": "ven",
+    "time": "16:30",
+    "city": "Modena",
+    "venue": "Largo Porta Sant'Agostino",
+    "speaker": "Daniela Marcheschi, Emilio Varrà",
+    "title": "Le metamorfosi di Pinocchio",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-13",
+    "day": "ven",
+    "time": "16:30",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "Pierre Charbonnier",
+    "title": "Un pianeta nel caos",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-14",
+    "day": "ven",
+    "time": "16:30",
+    "city": "Sassuolo",
+    "venue": "Teatro Carani",
+    "speaker": "Mario Del Pero",
+    "title": "Caos strategico",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-15",
+    "day": "ven",
+    "time": "18:00",
+    "city": "Modena",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Paolo Zellini",
+    "title": "Computazione",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-16",
+    "day": "ven",
+    "time": "18:00",
+    "city": "Modena",
+    "venue": "Piazza Sant'Agostino",
+    "speaker": "Marco Fortunato",
+    "title": "Caos ed esattezza",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-17",
+    "day": "ven",
+    "time": "18:00",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "Alberto Melloni",
+    "title": "Guerre di religione?",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-18",
+    "day": "ven",
+    "time": "18:00",
+    "city": "Sassuolo",
+    "venue": "Piazza Garibaldi",
+    "speaker": "Alessandro Aresu",
+    "title": "Un ordine cinese",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-19",
+    "day": "ven",
+    "time": "20:30",
+    "city": "Modena",
+    "venue": "Chiesa di San Carlo",
+    "speaker": "Andrea Catellani, Angelo Aurelio Gigante, Andrea Sartoretti",
+    "title": "Schemi, metodi, sistemi",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-20",
+    "day": "ven",
+    "time": "20:30",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "Christian Greco",
+    "title": "Cosmogonie egizie",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-21",
+    "day": "ven",
+    "time": "20:30",
+    "city": "Sassuolo",
+    "venue": "Teatro Carani",
+    "speaker": "Emanuela Fronza",
+    "title": "Limiti della sovranità",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-22",
+    "day": "ven",
+    "time": "22:00",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "La Ragione di Stato",
+    "title": "I Mondiali come volontà e rappresentazione",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-23",
+    "day": "sab",
+    "time": "10:00",
+    "city": "Modena",
+    "venue": "Accademia Nazionale di Scienze Lettere e Arti di Modena",
+    "title": "L'ordine dei lavoratori",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-24",
+    "day": "sab",
+    "time": "10:00",
+    "city": "Modena",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Nadia Fusini",
+    "title": "La follia di un re",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-25",
+    "day": "sab",
+    "time": "10:00",
+    "city": "Carpi",
+    "venue": "Tenda di Piazzale Re Astolfo",
+    "speaker": "Rocco Ronchi",
+    "title": "Chaosmos",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-26",
+    "day": "sab",
+    "time": "10:00",
+    "city": "Sassuolo",
+    "venue": "Teatro Carani",
+    "speaker": "Alfio Quarteroni",
+    "title": "Governo del caos",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-27",
+    "day": "sab",
+    "time": "10:30",
+    "city": "Modena",
+    "venue": "Arena Spazio Culturale",
+    "speaker": "Alessandro Ciacci, Giuseppe Pastore",
+    "title": "Poche ma buone",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-28",
+    "day": "sab",
+    "time": "11:30",
+    "city": "Modena",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Salvatore Natoli",
+    "title": "Caoscosmos",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-29",
+    "day": "sab",
+    "time": "11:30",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "Elena Esposito",
+    "title": "Algoritmi",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-30",
+    "day": "sab",
+    "time": "11:30",
+    "city": "Sassuolo",
+    "venue": "Piazza Garibaldi",
+    "speaker": "Ivano Dionigi",
+    "title": "Libro",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-31",
+    "day": "sab",
+    "time": "15:00",
+    "city": "Modena",
+    "venue": "Piazza Sant'Agostino",
+    "speaker": "Nicla Vassallo",
+    "title": "Errore e ignoranza",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-32",
+    "day": "sab",
+    "time": "15:00",
+    "city": "Modena",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Gianfranco Ravasi",
+    "title": "Genesi",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-33",
+    "day": "sab",
+    "time": "15:00",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "Roberto Esposito",
+    "title": "Geopolitica",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-34",
+    "day": "sab",
+    "time": "15:00",
+    "city": "Sassuolo",
+    "venue": "Piazza Garibaldi",
+    "speaker": "Mauro Bonazzi",
+    "title": "Caos calmo",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-35",
+    "day": "sab",
+    "time": "16:00",
+    "city": "Modena",
+    "venue": "Palazzo dei Musei",
+    "speaker": "Massimo Bonfatti (Bonfa), Claudio Nizzi",
+    "title": "Leo Pulp e il mistero degli archivi incongrui",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-36",
+    "day": "sab",
+    "time": "16:30",
+    "city": "Modena",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Massimo Recalcati",
+    "title": "Catastrofe e rigenerazione",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-37",
+    "day": "sab",
+    "time": "16:30",
+    "city": "Modena",
+    "venue": "Piazza Sant'Agostino",
+    "speaker": "Armando Savignano",
+    "title": "Il sonno della ragione",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-38",
+    "day": "sab",
+    "time": "16:30",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "Barbara Carnevali",
+    "title": "La forma è sostanza?",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-39",
+    "day": "sab",
+    "time": "16:30",
+    "city": "Sassuolo",
+    "venue": "Piazza Garibaldi",
+    "speaker": "Simona Forti",
+    "title": "La democrazia è caos",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-40",
+    "day": "sab",
+    "time": "18:00",
+    "city": "Modena",
+    "venue": "Piazza Sant'Agostino",
+    "speaker": "Gaspare Polizzi",
+    "title": "Kairòs vs Kaos",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-41",
+    "day": "sab",
+    "time": "18:00",
+    "city": "Modena",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Maurizio Ferraris",
+    "title": "Ordine nel caos",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-42",
+    "day": "sab",
+    "time": "18:00",
+    "city": "Carpi",
+    "venue": "Campo di Fossoli",
+    "speaker": "Antonio Scurati",
+    "title": "8 settembre 1943. Il vuoto e la scelta",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-43",
+    "day": "sab",
+    "time": "18:00",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "Massimo Cacciari",
+    "title": "Inizio e Chaos",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-44",
+    "day": "sab",
+    "time": "18:00",
+    "city": "Sassuolo",
+    "venue": "Piazza Garibaldi",
+    "speaker": "Telmo Pievani",
+    "title": "Estinzione",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-45",
+    "day": "sab",
+    "time": "18:30",
+    "city": "Modena",
+    "venue": "Palazzo dei Musei",
+    "speaker": "Francesco Ciaponi, Ermanno \"Gomma\" Guarneri",
+    "title": "L'underground non è mai morto",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-46",
+    "day": "sab",
+    "time": "19:30",
+    "city": "Modena",
+    "venue": "Piazza Sant'Agostino",
+    "title": "Dove trema l'Asia: Taiwan tra equilibrio e caos",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-47",
+    "day": "sab",
+    "time": "20:30",
+    "city": "Modena",
+    "venue": "Chiesa di San Carlo",
+    "speaker": "Don Dante Carraro, Alberto Mantovani",
+    "title": "Africa: il caos dell'aiuto internazionale",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-48",
+    "day": "sab",
+    "time": "20:30",
+    "city": "Modena",
+    "venue": "Tenda di Piazza XX settembre",
+    "speaker": "Serenella Iovino",
+    "title": "Gli animali che ti porti dentro",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-49",
+    "day": "sab",
+    "time": "20:30",
+    "city": "Carpi",
+    "venue": "Tenda di Piazzale Re Astolfo",
+    "speaker": "Gloria Origgi",
+    "title": "Esperienze trasformative",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-50",
+    "day": "sab",
+    "time": "20:30",
+    "city": "Sassuolo",
+    "venue": "Teatro Carani",
+    "speaker": "Vittorio Emanuele Parsi",
+    "title": "America \"post-americana\"",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-51",
+    "day": "dom",
+    "time": "10:00",
+    "city": "Modena",
+    "venue": "Tenda di Piazza XX settembre",
+    "speaker": "Giuliano Boccali",
+    "title": "Il caos nei miti di origine indiana",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-52",
+    "day": "dom",
+    "time": "10:00",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "Silvia Lippi",
+    "title": "Strutture del caos",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-53",
+    "day": "dom",
+    "time": "10:00",
+    "city": "Sassuolo",
+    "venue": "Teatro Carani",
+    "speaker": "Anne Cheng",
+    "title": "Yi Jing (Libro dei mutamenti)",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-54",
+    "day": "dom",
+    "time": "11:30",
+    "city": "Modena",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Anna Maria Lorusso",
+    "title": "Forma e indeterminazione",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-55",
+    "day": "dom",
+    "time": "11:30",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "Umberto Galimberti",
+    "title": "Lo spaesamento nell'età della tecnica e del mercato globalizzato",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-56",
+    "day": "dom",
+    "time": "11:30",
+    "city": "Sassuolo",
+    "venue": "Piazza Garibaldi",
+    "speaker": "Guido Tonelli",
+    "title": "Origini dell'universo",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-57",
+    "day": "dom",
+    "time": "15:00",
+    "city": "Modena",
+    "venue": "Chiesa di San Carlo",
+    "speaker": "Francisco Jarauta",
+    "title": "All'ombra della Torre di Babele",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-58",
+    "day": "dom",
+    "time": "15:00",
+    "city": "Modena",
+    "venue": "Tenda di Piazza XX settembre",
+    "speaker": "Francesca Rigotti",
+    "title": "Sciogliere il caos",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-59",
+    "day": "dom",
+    "time": "15:00",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "Luke Kemp",
+    "title": "Collasso",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-60",
+    "day": "dom",
+    "time": "15:00",
+    "city": "Sassuolo",
+    "venue": "Piazza Garibaldi",
+    "speaker": "Rosi Braidotti",
+    "title": "Dissonanze e nomadismi",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-61",
+    "day": "dom",
+    "time": "16:30",
+    "city": "Modena",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Valentina Moro",
+    "title": "Teatro e politica",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-62",
+    "day": "dom",
+    "time": "16:30",
+    "city": "Modena",
+    "venue": "Chiesa di San Carlo",
+    "speaker": "Carlo Ossola",
+    "title": "Automi e altre estinzioni",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-63",
+    "day": "dom",
+    "time": "16:30",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "Donatella Di Cesare",
+    "title": "Mille Antigoni",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-64",
+    "day": "dom",
+    "time": "16:30",
+    "city": "Sassuolo",
+    "venue": "Piazza Garibaldi",
+    "speaker": "Matteo Lancini",
+    "title": "Instabilità",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-65",
+    "day": "dom",
+    "time": "18:00",
+    "city": "Modena",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Adriana Cavarero",
+    "title": "Un'incertezza costitutiva",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-66",
+    "day": "dom",
+    "time": "18:00",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "Carlo Galli",
+    "title": "Terra",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-67",
+    "day": "dom",
+    "time": "18:00",
+    "city": "Sassuolo",
+    "venue": "Piazza Garibaldi",
+    "speaker": "Michela Marzano",
+    "title": "Abitare il caos",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-68",
+    "day": "dom",
+    "time": "21:00",
+    "city": "Modena",
+    "venue": "Tenda di Piazza XX settembre",
+    "speaker": "Umberto Curi",
+    "title": "Polemos",
+    "category": "Lezione magistrale"
+  }
+]
