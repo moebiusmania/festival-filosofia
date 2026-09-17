@@ -94,26 +94,26 @@
     "day": "ven",
     "time": "16:30",
     "city": "Modena",
-    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
-    "speaker": "Stefano Massini",
-    "title": "Il banchetto della crudeltà",
-    "category": "Lezione magistrale"
+    "venue": "Accademia Nazionale di Scienze Lettere e Arti di Modena",
+    "title": "C'è ordine nel caos?",
+    "category": "Conversazione"
   },
   {
     "id": "ff-11",
     "day": "ven",
     "time": "16:30",
     "city": "Modena",
-    "venue": "Accademia Nazionale di Scienze Lettere e Arti di Modena",
-    "title": "C'è ordine nel caos?",
-    "category": "Conversazione"
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Stefano Massini",
+    "title": "Il banchetto della crudeltà",
+    "category": "Lezione magistrale"
   },
   {
     "id": "ff-12",
     "day": "ven",
     "time": "16:30",
     "city": "Modena",
-    "venue": "Largo Porta Sant'Agostino",
+    "venue": "Piazza Sant'Agostino",
     "speaker": "Daniela Marcheschi, Emilio Varrà",
     "title": "Le metamorfosi di Pinocchio",
     "category": "Conversazione"
@@ -181,15 +181,35 @@
   {
     "id": "ff-19",
     "day": "ven",
-    "time": "20:30",
+    "time": "19:30",
     "city": "Modena",
-    "venue": "Chiesa di San Carlo",
-    "speaker": "Andrea Catellani, Angelo Aurelio Gigante, Andrea Sartoretti",
-    "title": "Schemi, metodi, sistemi",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Massimo Cacciari, Roberto Esposito",
+    "title": "Ultimi maestri",
     "category": "Conversazione"
   },
   {
     "id": "ff-20",
+    "day": "ven",
+    "time": "20:30",
+    "city": "Modena",
+    "venue": "Chiesa di San Carlo",
+    "speaker": "Andrea Catellani, Angelo Gigante, Andrea Sartoretti",
+    "title": "Schemi, metodi, sistemi",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-21",
+    "day": "ven",
+    "time": "20:30",
+    "city": "Modena",
+    "venue": "Tenda di Piazza XX settembre",
+    "speaker": "Umberto Curi",
+    "title": "Polemos",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-22",
     "day": "ven",
     "time": "20:30",
     "city": "Carpi",
@@ -199,7 +219,7 @@
     "category": "Conversazione"
   },
   {
-    "id": "ff-21",
+    "id": "ff-23",
     "day": "ven",
     "time": "20:30",
     "city": "Sassuolo",
@@ -209,17 +229,27 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-22",
+    "id": "ff-24",
     "day": "ven",
     "time": "22:00",
     "city": "Carpi",
     "venue": "Piazza Martiri",
+    "speaker": "Domenico Starnone",
+    "title": "Frutti dell'equivoco",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-25",
+    "day": "ven",
+    "time": "22:00",
+    "city": "Sassuolo",
+    "venue": "Piazza Garibaldi",
     "speaker": "La Ragione di Stato",
     "title": "I Mondiali come volontà e rappresentazione",
     "category": "Conversazione"
   },
   {
-    "id": "ff-23",
+    "id": "ff-26",
     "day": "sab",
     "time": "10:00",
     "city": "Modena",
@@ -228,7 +258,7 @@
     "category": "Conversazione"
   },
   {
-    "id": "ff-24",
+    "id": "ff-27",
     "day": "sab",
     "time": "10:00",
     "city": "Modena",
@@ -238,7 +268,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-25",
+    "id": "ff-28",
     "day": "sab",
     "time": "10:00",
     "city": "Carpi",
@@ -248,7 +278,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-26",
+    "id": "ff-29",
     "day": "sab",
     "time": "10:00",
     "city": "Sassuolo",
@@ -258,7 +288,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-27",
+    "id": "ff-30",
     "day": "sab",
     "time": "10:30",
     "city": "Modena",
@@ -268,7 +298,7 @@
     "category": "Conversazione"
   },
   {
-    "id": "ff-28",
+    "id": "ff-31",
     "day": "sab",
     "time": "11:30",
     "city": "Modena",
@@ -278,7 +308,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-29",
+    "id": "ff-32",
     "day": "sab",
     "time": "11:30",
     "city": "Carpi",
@@ -288,7 +318,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-30",
+    "id": "ff-33",
     "day": "sab",
     "time": "11:30",
     "city": "Sassuolo",
@@ -298,17 +328,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-31",
-    "day": "sab",
-    "time": "15:00",
-    "city": "Modena",
-    "venue": "Piazza Sant'Agostino",
-    "speaker": "Nicla Vassallo",
-    "title": "Errore e ignoranza",
-    "category": "Lezione magistrale"
-  },
-  {
-    "id": "ff-32",
+    "id": "ff-34",
     "day": "sab",
     "time": "15:00",
     "city": "Modena",
@@ -318,7 +338,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-33",
+    "id": "ff-35",
     "day": "sab",
     "time": "15:00",
     "city": "Carpi",
@@ -328,7 +348,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-34",
+    "id": "ff-36",
     "day": "sab",
     "time": "15:00",
     "city": "Sassuolo",
@@ -338,7 +358,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-35",
+    "id": "ff-37",
     "day": "sab",
     "time": "16:00",
     "city": "Modena",
@@ -348,7 +368,7 @@
     "category": "Conversazione"
   },
   {
-    "id": "ff-36",
+    "id": "ff-38",
     "day": "sab",
     "time": "16:30",
     "city": "Modena",
@@ -358,7 +378,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-37",
+    "id": "ff-39",
     "day": "sab",
     "time": "16:30",
     "city": "Modena",
@@ -368,7 +388,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-38",
+    "id": "ff-40",
     "day": "sab",
     "time": "16:30",
     "city": "Carpi",
@@ -378,7 +398,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-39",
+    "id": "ff-41",
     "day": "sab",
     "time": "16:30",
     "city": "Sassuolo",
@@ -388,17 +408,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-40",
-    "day": "sab",
-    "time": "18:00",
-    "city": "Modena",
-    "venue": "Piazza Sant'Agostino",
-    "speaker": "Gaspare Polizzi",
-    "title": "Kairòs vs Kaos",
-    "category": "Lezione magistrale"
-  },
-  {
-    "id": "ff-41",
+    "id": "ff-42",
     "day": "sab",
     "time": "18:00",
     "city": "Modena",
@@ -408,7 +418,17 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-42",
+    "id": "ff-43",
+    "day": "sab",
+    "time": "18:00",
+    "city": "Modena",
+    "venue": "Piazza Sant'Agostino",
+    "speaker": "Gaspare Polizzi",
+    "title": "Kairòs vs Kaos",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-44",
     "day": "sab",
     "time": "18:00",
     "city": "Carpi",
@@ -418,7 +438,7 @@
     "category": "Conversazione"
   },
   {
-    "id": "ff-43",
+    "id": "ff-45",
     "day": "sab",
     "time": "18:00",
     "city": "Carpi",
@@ -428,7 +448,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-44",
+    "id": "ff-46",
     "day": "sab",
     "time": "18:00",
     "city": "Sassuolo",
@@ -438,7 +458,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-45",
+    "id": "ff-47",
     "day": "sab",
     "time": "18:30",
     "city": "Modena",
@@ -448,7 +468,7 @@
     "category": "Conversazione"
   },
   {
-    "id": "ff-46",
+    "id": "ff-48",
     "day": "sab",
     "time": "19:30",
     "city": "Modena",
@@ -457,7 +477,7 @@
     "category": "Conversazione"
   },
   {
-    "id": "ff-47",
+    "id": "ff-49",
     "day": "sab",
     "time": "20:30",
     "city": "Modena",
@@ -467,7 +487,7 @@
     "category": "Conversazione"
   },
   {
-    "id": "ff-48",
+    "id": "ff-50",
     "day": "sab",
     "time": "20:30",
     "city": "Modena",
@@ -477,7 +497,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-49",
+    "id": "ff-51",
     "day": "sab",
     "time": "20:30",
     "city": "Carpi",
@@ -487,7 +507,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-50",
+    "id": "ff-52",
     "day": "sab",
     "time": "20:30",
     "city": "Sassuolo",
@@ -497,7 +517,17 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-51",
+    "id": "ff-53",
+    "day": "sab",
+    "time": "22:00",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "Paolo Perulli",
+    "title": "Capitale senza democrazia",
+    "category": "Conversazione"
+  },
+  {
+    "id": "ff-54",
     "day": "dom",
     "time": "10:00",
     "city": "Modena",
@@ -507,7 +537,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-52",
+    "id": "ff-55",
     "day": "dom",
     "time": "10:00",
     "city": "Carpi",
@@ -517,7 +547,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-53",
+    "id": "ff-56",
     "day": "dom",
     "time": "10:00",
     "city": "Sassuolo",
@@ -527,7 +557,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-54",
+    "id": "ff-57",
     "day": "dom",
     "time": "11:30",
     "city": "Modena",
@@ -537,7 +567,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-55",
+    "id": "ff-58",
     "day": "dom",
     "time": "11:30",
     "city": "Carpi",
@@ -547,7 +577,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-56",
+    "id": "ff-59",
     "day": "dom",
     "time": "11:30",
     "city": "Sassuolo",
@@ -557,7 +587,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-57",
+    "id": "ff-60",
     "day": "dom",
     "time": "15:00",
     "city": "Modena",
@@ -567,7 +597,17 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-58",
+    "id": "ff-61",
+    "day": "dom",
+    "time": "15:00",
+    "city": "Modena",
+    "venue": "Piazza Sant'Agostino",
+    "speaker": "Nicla Vassallo",
+    "title": "Il caos dentro di sé",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-62",
     "day": "dom",
     "time": "15:00",
     "city": "Modena",
@@ -577,7 +617,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-59",
+    "id": "ff-63",
     "day": "dom",
     "time": "15:00",
     "city": "Carpi",
@@ -587,7 +627,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-60",
+    "id": "ff-64",
     "day": "dom",
     "time": "15:00",
     "city": "Sassuolo",
@@ -597,17 +637,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-61",
-    "day": "dom",
-    "time": "16:30",
-    "city": "Modena",
-    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
-    "speaker": "Valentina Moro",
-    "title": "Teatro e politica",
-    "category": "Lezione magistrale"
-  },
-  {
-    "id": "ff-62",
+    "id": "ff-65",
     "day": "dom",
     "time": "16:30",
     "city": "Modena",
@@ -617,7 +647,17 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-63",
+    "id": "ff-66",
+    "day": "dom",
+    "time": "16:30",
+    "city": "Modena",
+    "venue": "Piazza Grande - Sito Patrimonio Mondiale",
+    "speaker": "Valentina Moro",
+    "title": "Teatro e politica",
+    "category": "Lezione magistrale"
+  },
+  {
+    "id": "ff-67",
     "day": "dom",
     "time": "16:30",
     "city": "Carpi",
@@ -627,7 +667,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-64",
+    "id": "ff-68",
     "day": "dom",
     "time": "16:30",
     "city": "Sassuolo",
@@ -637,7 +677,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-65",
+    "id": "ff-69",
     "day": "dom",
     "time": "18:00",
     "city": "Modena",
@@ -647,7 +687,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-66",
+    "id": "ff-70",
     "day": "dom",
     "time": "18:00",
     "city": "Carpi",
@@ -657,7 +697,7 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-67",
+    "id": "ff-71",
     "day": "dom",
     "time": "18:00",
     "city": "Sassuolo",
@@ -667,13 +707,13 @@
     "category": "Lezione magistrale"
   },
   {
-    "id": "ff-68",
+    "id": "ff-72",
     "day": "dom",
-    "time": "21:00",
-    "city": "Modena",
-    "venue": "Tenda di Piazza XX settembre",
-    "speaker": "Umberto Curi",
-    "title": "Polemos",
+    "time": "19:30",
+    "city": "Carpi",
+    "venue": "Piazza Martiri",
+    "speaker": "Enzo Bianchi",
+    "title": "Chiesa e Regno",
     "category": "Lezione magistrale"
   }
 ]
