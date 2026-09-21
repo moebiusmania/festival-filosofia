@@ -1096,6 +1096,10 @@ html[data-theme="dark"] .hotel-map-ph {
   background: #1e1e1c;
 }
 
+html[data-theme="dark"] .ff-modal-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
 html[data-theme="dark"] .hotel-map-label span {
   background: rgba(10, 10, 10, 0.8);
 }
@@ -1321,4 +1325,170 @@ html[data-theme="dark"] .notepad-lines-bg {
   color: var(--ff-text-muted);
   font-weight: 300;
   font-style: italic;
+}
+
+/* FINE FESTIVAL MODAL */
+.ff-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(10, 10, 10, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0s 0.25s;
+}
+
+.ff-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s ease, visibility 0s 0s;
+}
+
+.ff-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding: 28px 24px 24px;
+  background: var(--ff-white);
+  border: 1px solid var(--ff-black);
+  animation: fadeSlide 0.25s ease;
+}
+
+.ff-modal-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--ff-text-muted);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.15s, background 0.15s;
+
+  i { font-size: calc(18px * var(--fs)); }
+
+  &:hover {
+    color: var(--ff-text);
+    background: var(--ff-gray-light);
+  }
+}
+
+.ff-modal-eyebrow {
+  margin: 0;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: calc(10px * var(--fs));
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ff-gray);
+}
+
+.ff-modal-title {
+  margin: 10px 0 0;
+  padding-right: 32px;
+  font-family: 'EB Garamond', serif;
+  font-size: calc(26px * var(--fs));
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--ff-black);
+}
+
+.ff-modal-body {
+  margin: 12px 0 0;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: calc(14px * var(--fs));
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--ff-text-muted);
+
+  em {
+    font-style: italic;
+    color: var(--ff-red);
+  }
+}
+
+.ff-modal-next {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ff-border);
+}
+
+.ff-modal-tema {
+  margin: 8px 0 0;
+  font-family: 'EB Garamond', serif;
+  font-size: calc(32px * var(--fs));
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--ff-red);
+}
+
+.ff-modal-date {
+  margin: 6px 0 0;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: calc(14px * var(--fs));
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ff-black);
+}
+
+.ff-modal-cities {
+  margin: 4px 0 0;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: calc(12px * var(--fs));
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--ff-text-muted);
+}
+
+.ff-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.ff-modal-btn {
+  padding: 12px 24px;
+  background: var(--ff-black);
+  color: var(--ff-white);
+  border: none;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: calc(13px * var(--fs));
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s;
+
+  &:hover { background: var(--ff-near-black); }
+}
+
+.ff-modal-link {
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: calc(13px * var(--fs));
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: var(--ff-text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+
+  &:hover {
+    color: var(--ff-red);
+    text-decoration: underline;
+  }
 }

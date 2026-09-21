@@ -2,6 +2,7 @@ import { define } from "../utils.ts";
 import Header from "../components/Header.tsx";
 import Footer from "../components/Footer.tsx";
 import Sections from "../islands/Sections.tsx";
+import FineFestivalModal from "../islands/FineFestivalModal.tsx";
 
 export default define.page(function Home() {
   return (
@@ -9,6 +10,7 @@ export default define.page(function Home() {
       <Header />
       <Sections />
       <Footer />
+      <FineFestivalModal />
     </div>
   );
 });

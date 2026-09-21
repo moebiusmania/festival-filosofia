@@ -34,14 +34,24 @@ Single-page companion app for festivalfilosofia 2026 (theme: "caos", 18–20 Sep
 
 - `main.ts` — creates the Fresh `App`, mounts static files middleware, and enables filesystem routing
 - `routes/_app.tsx` — HTML shell (lang, meta, Tabler Icons CDN link, title)
-- `routes/index.tsx` — sole page: `Header` + `Sections` island + `Footer`
+- `routes/index.tsx` — home page: `Header` + `Sections` island + `Footer` + `FineFestivalModal` island
 - `utils.ts` — exports `define = createDefine<State>()` used in all route files; `State` is the shared middleware state type
 
 ### Islands vs components
 
 Fresh's islands architecture applies strictly:
-- `islands/` — interactive (client-hydrated) components; currently only `Sections.tsx`, which owns the accordion open/close state via `@preact/signals`
+- `islands/` — interactive (client-hydrated) components: `Sections.tsx` (owns the accordion open/close state via `@preact/signals`), `NavMenu.tsx`, `AlloggioForm.tsx`, `ListaRistoranti.tsx`, `DatiLocali.tsx`, and `FineFestivalModal.tsx`
 - `components/` — static server-rendered components (`Header`, `Footer`) and section content under `components/sections/`
+
+### End-of-edition modal
+
+`islands/FineFestivalModal.tsx` shows a dismissable modal on load announcing that the 2026 edition
+is over and that the next one is *mito*, 17–19 September 2027. It is mounted on `routes/index.tsx`
+only (not `_app.tsx`): dismissal is deliberately **not** persisted, and the nav menu does full page
+loads, so an app-wide mount would re-show it on every internal navigation. Open state is
+`useSignal(true)`, so it renders open during SSR with no hydration flash. Styles live under
+`/* FINE FESTIVAL MODAL */` at the end of `assets/style.css`. To update it for a future edition,
+edit the `PROSSIMA` const at the top of the island.
 
 ### Sections
 
