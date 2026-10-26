@@ -34,9 +34,12 @@ const { intro = false } = Astro.props;
     <link rel="manifest" href={url("manifest.json")} />
     <link rel="icon" type="image/svg+xml" href={url("icons/icon.svg")} />
     <link rel="apple-touch-icon" href={url("icons/icon.svg")} />
+    <!-- Fonts from Bunny Fonts: a GDPR-friendly Google Fonts mirror that
+         doesn't log visitors. Icons are inlined SVG (components/Icon.astro). -->
+    <link rel="preconnect" href="https://fonts.bunny.net" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css"
+      href="https://fonts.bunny.net/css?family=eb-garamond:400,400i,500,500i,600|libre-franklin:300,400,500&display=swap"
     />
     <title>festivalfilosofia 2027 · mito</title>
   </head>

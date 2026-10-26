@@ -39,7 +39,9 @@ describe("NavMenu", () => {
   test("theme button shows moon icon in light mode by default", async () => {
     const html = await render(NavMenu);
     expect(html).toContain("ff-theme-btn");
-    expect(html).toContain('class="ti ti-moon"');
+    // Both icons ship; CSS shows the one matching html[data-theme].
+    expect(html).toMatch(/<svg[^>]*class="ti ti-moon ff-theme-icon-light"/);
+    expect(html).toMatch(/<svg[^>]*class="ti ti-sun ff-theme-icon-dark"/);
     expect(html).toContain('aria-label="Passa al tema scuro"');
   });
 

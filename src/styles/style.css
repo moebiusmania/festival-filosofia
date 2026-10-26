@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Libre+Franklin:wght@300;400;500&display=swap');
-
 /* VIEW TRANSITIONS */
 /* Native cross-document transitions: page loads stay real navigations (so
    Alpine re-initialises as usual), the browser cross-fades between them.
@@ -12,6 +10,27 @@
   ::view-transition-group(root) {
     animation-duration: 0.25s;
   }
+}
+
+/* ICONS */
+/* Inline Tabler SVGs (components/Icon.astro), sized and coloured like text. */
+.ti {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
+}
+
+/* Theme button: moon in light mode, sun in dark, switched by html[data-theme]
+   so the right one shows before any script runs. */
+.ff-theme-icon-dark,
+html[data-theme="dark"] .ff-theme-icon-light {
+  display: none;
+}
+
+html[data-theme="dark"] .ff-theme-icon-dark {
+  display: inline-block;
 }
 
 .sr-only {
@@ -334,7 +353,7 @@ body {
   color: var(--ff-text-muted);
   font-weight: 300;
 
-  i { color: var(--ff-red); }
+  .ti { color: var(--ff-red); }
 }
 
 /* Custom filled SVG pins, coloured per city. */
@@ -637,7 +656,7 @@ html[data-theme="dark"] .leaflet-control-zoom a {
   align-items: center;
   gap: 5px;
 
-  i { font-size: calc(24px * var(--fs)); color: var(--ff-red); }
+  .ti { font-size: calc(24px * var(--fs)); color: var(--ff-red); }
 
   span {
     font-size: calc(10px * var(--fs));
@@ -681,7 +700,7 @@ html[data-theme="dark"] .leaflet-control-zoom a {
   font-weight: 400;
   font-style: normal;
 
-  i { font-size: calc(13px * var(--fs)); }
+  .ti { font-size: calc(13px * var(--fs)); }
 }
 
 .hotel-map-iframe {
@@ -789,7 +808,7 @@ html[data-theme="dark"] .leaflet-control-zoom a {
 
   &:hover { background: var(--ff-near-black); }
 
-  i { font-size: calc(15px * var(--fs)); }
+  .ti { font-size: calc(15px * var(--fs)); }
 }
 
 .hotel-form-saved {
@@ -800,7 +819,7 @@ html[data-theme="dark"] .leaflet-control-zoom a {
   font-weight: 400;
   color: var(--ff-text-muted);
 
-  i { font-size: calc(15px * var(--fs)); color: var(--ff-red); }
+  .ti { font-size: calc(15px * var(--fs)); color: var(--ff-red); }
 }
 
 /* RISTORANTI */
@@ -894,7 +913,7 @@ html[data-theme="dark"] .leaflet-control-zoom a {
 
   &:hover { background: var(--ff-near-black); }
 
-  i { font-size: calc(15px * var(--fs)); }
+  .ti { font-size: calc(15px * var(--fs)); }
 }
 
 .lista-risto-empty {
@@ -925,7 +944,7 @@ html[data-theme="dark"] .leaflet-control-zoom a {
   cursor: pointer;
   transition: color 0.15s;
 
-  i { font-size: calc(13px * var(--fs)); }
+  .ti { font-size: calc(13px * var(--fs)); }
 }
 
 .lista-risto-btn--edit {
@@ -1505,7 +1524,7 @@ html[data-theme="dark"] .notepad-lines-bg {
 
   &:hover { background: var(--ff-red-dark); }
 
-  i { font-size: calc(16px * var(--fs)); }
+  .ti { font-size: calc(16px * var(--fs)); }
 }
 
 .dati-locali-done {
@@ -1570,7 +1589,7 @@ html[data-welcome="seen"] .ff-modal-overlay {
   -webkit-tap-highlight-color: transparent;
   transition: color 0.15s, background 0.15s;
 
-  i { font-size: calc(18px * var(--fs)); }
+  .ti { font-size: calc(18px * var(--fs)); }
 
   &:hover {
     color: var(--ff-text);

@@ -1,0 +1,38 @@
+---
+// A Tabler icon inlined as SVG at build time (from @tabler/icons), so pages
+// ship only the icons they use and fetch nothing from third parties. Keeps
+// the `ti ti-<name>` classes of the old webfont, so styles target `.ti`;
+// it sizes like text (1em) and takes the current colour.
+import { readFileSync } from "node:fs";
+import { createRequire } from "node:module";
+
+interface Props {
+  name: string;
+  filled?: boolean;
+  class?: string;
+}
+const { name, filled = false, class: className } = Astro.props;
+
+const file = createRequire(import.meta.url).resolve(
+  `@tabler/icons/${filled ? "filled" : "outline"}/${name}.svg`,
+);
+const svg = readFileSync(file, "utf8");
+const [, rawAttrs = "", inner = ""] = svg.match(/<svg([^>]*)>([\s\S]*)<\/svg>/) ?? [];
+const attrs = Object.fromEntries(
+  [...rawAttrs.matchAll(/([\w:-]+)="([^"]*)"/g)]
+    .map((m) => [m[1], m[2]])
+    .filter(([k]) => !["width", "height", "class"].includes(k)),
+);
+// Drop Tabler's invisible 24×24 bounding-box path.
+const body = inner.replace(/<path stroke="none" d="M0 0h24v24H0z" fill="none"\s*\/>/, "").trim();
+---
+
+<svg
+  {...attrs}
+  class:list={["ti", `ti-${name}${filled ? "-filled" : ""}`, className]}
+  width="1em"
+  height="1em"
+  aria-hidden="true"
+  focusable="false"
+  set:html={body}
+/>

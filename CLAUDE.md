@@ -53,7 +53,7 @@ in `.astro` files and in client scripts alike. `public/manifest.json` uses relat
 
 ### Layout
 
-- `src/layouts/Layout.astro` — HTML shell (meta, theme bootstrap script, Tabler Icons CDN, global CSS), wraps
+- `src/layouts/Layout.astro` — HTML shell (meta, theme bootstrap script, Bunny Fonts, global CSS), wraps
   every page with `Header` + `Footer`. A `slot="after"` renders after the footer.
 - `src/pages/` — `index`, `hotel`, `info`, `ristoranti`, `impostazioni` (settings), `local-data`.
 - `src/components/` — Astro components; `src/components/sections/` holds the accordion section bodies.
@@ -129,7 +129,11 @@ its id in the `CONTENT` object in `Sections.astro`.
   and all motion live under `/* DECORATION & MOTION */` in `style.css`. Intro animations only run when the
   layout gets `intro` (home page), so they don't replay on every navigation. Reduced motion disables all of it.
 - `public/` — static files copied as-is (`manifest.json`, `icons/`).
-- Tabler Icons loaded from CDN webfont; use `<i class="ti ti-<name>" aria-hidden="true"></i>`.
+- Icons: `<Icon name="<tabler-name>" />` (add `filled` for the filled set) inlines the Tabler SVG from
+  `@tabler/icons` at build time; it renders `<svg class="ti ti-<name>">` sized 1em in `currentColor`, so style
+  icons through `.ti`. Don't add icon fonts or CDNs.
+- Fonts come from Bunny Fonts (linked in `Layout.astro`). The README promises no third-party tracking:
+  `tests/icons.test.ts` fails if the page shell loads anything external other than `fonts.bunny.net`.
 
 ### Data
 

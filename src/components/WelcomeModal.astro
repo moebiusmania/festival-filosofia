@@ -1,4 +1,5 @@
 ---
+import Icon from "./Icon.astro";
 import Decor from "./Decor.astro";
 import { EDITION as EDIZIONE } from "../lib/edition.ts";
 
@@ -32,7 +33,7 @@ const SITO = "https://www.festivalfilosofia.it/";
       @click="close()"
       aria-label="Chiudi l'avviso"
     >
-      <i class="ti ti-x" aria-hidden="true"></i>
+      <Icon name="x" />
     </button>
 
     <p class="ff-modal-eyebrow">{EDIZIONE.numero} edizione · {EDIZIONE.anno}</p>

@@ -1,4 +1,5 @@
 ---
+import Icon from "../Icon.astro";
 import Decor from "../Decor.astro";
 import { CITIES, DAYS, EVENTS } from "../../lib/programma.ts";
 
@@ -34,7 +35,7 @@ const CITY_FILTERS = [{ value: "all", label: "Tutte le sedi" }, ...CITIES.map((c
       </p>
       <p class="prog-bookmark-hint">
         Tocca un evento per salvarlo con il segnalibro{" "}
-        <i class="ti ti-bookmark-filled" aria-hidden="true"></i>
+        <Icon name="bookmark" filled />
         {" "}— tocca di nuovo per rimuoverlo.
       </p>
 

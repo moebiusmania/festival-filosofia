@@ -1,4 +1,5 @@
 ---
+import Icon from "./Icon.astro";
 import InfoSection from "./sections/InfoSection.astro";
 import MapSection from "./sections/MapSection.astro";
 import ProgrammaSection from "./sections/ProgrammaSection.astro";
@@ -39,7 +40,7 @@ const CONTENT = {
           >
             <span class="ff-section-num">{num}</span>
             <span class="ff-section-title">{title}</span>
-            <i class="ti ti-chevron-down ff-section-arrow" aria-hidden="true" />
+            <Icon name="chevron-down" class="ff-section-arrow" />
           </button>
           <div class="ff-section-body" id={`section-${id}`}>
             <Content />

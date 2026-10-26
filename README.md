@@ -23,7 +23,8 @@ Una piccola app web pensata per chi partecipa al festival: raccoglie in un unico
 - **Interattività:** [Alpine.js](https://alpinejs.dev/)
 - **Deploy:** GitHub Pages tramite GitHub Actions a ogni push su `main`
 - **Mappa:** [Leaflet](https://leafletjs.com/) + tile [OpenStreetMap](https://www.openstreetmap.org/) (nessuna API key)
-- **Icone:** [Tabler Icons](https://tabler.io/icons) (CDN webfont)
+- **Icone:** [Tabler Icons](https://tabler.io/icons), incorporate come SVG in fase di build
+- **Font:** EB Garamond e Libre Franklin da [Bunny Fonts](https://fonts.bunny.net/) (nessun log dei visitatori)
 
 ## Setup locale
 
@@ -77,7 +78,8 @@ A small web app for festival attendees: it gathers practical information in one 
 - **Interactivity:** [Alpine.js](https://alpinejs.dev/)
 - **Deploy:** GitHub Pages via GitHub Actions on every push to `main`
 - **Map:** [Leaflet](https://leafletjs.com/) + [OpenStreetMap](https://www.openstreetmap.org/) tiles (no API key)
-- **Icons:** [Tabler Icons](https://tabler.io/icons) (CDN webfont)
+- **Icons:** [Tabler Icons](https://tabler.io/icons), inlined as SVG at build time
+- **Fonts:** EB Garamond and Libre Franklin from [Bunny Fonts](https://fonts.bunny.net/) (no visitor logging)
 
 ## Local setup
 

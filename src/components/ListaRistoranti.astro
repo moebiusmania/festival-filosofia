@@ -1,7 +1,11 @@
+---
+import Icon from "./Icon.astro";
+---
+
 <div x-data="listaRistoranti" style="display: contents">
   <div x-show="mode === 'list'">
     <button class="lista-risto-add" type="button" @click="openAdd()">
-      <i class="ti ti-plus" aria-hidden="true"></i>
+      <Icon name="plus" />
       Aggiungi ristorante
     </button>
 
@@ -30,7 +34,7 @@
                 @click="openEdit(item)"
                 :aria-label="`Modifica ${item.name}`"
               >
-                <i class="ti ti-edit" aria-hidden="true"></i>
+                <Icon name="edit" />
                 Modifica
               </button>
               <button
@@ -39,7 +43,7 @@
                 @click="remove(item.id)"
                 :aria-label="`Elimina ${item.name}`"
               >
-                <i class="ti ti-trash" aria-hidden="true"></i>
+                <Icon name="trash" />
                 Elimina
               </button>
             </div>
@@ -111,7 +115,7 @@
 
         <div class="hotel-form-actions">
           <button class="hotel-form-submit" type="submit">
-            <i class="ti ti-check" aria-hidden="true"></i>
+            <Icon name="check" />
             Salva
           </button>
           <button class="lista-risto-cancel" type="button" @click="cancel()">

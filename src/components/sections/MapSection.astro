@@ -1,4 +1,5 @@
 ---
+import Icon from "../Icon.astro";
 import { MAP_FILTERS, MAPPED } from "../../lib/venues.ts";
 ---
 
@@ -23,7 +24,7 @@ import { MAP_FILTERS, MAPPED } from "../../lib/venues.ts";
   </div>
   <div x-ref="map" class="ff-map" aria-label="Mappa delle sedi"></div>
   <p class="ff-map-note">
-    <i class="ti ti-map-pin" aria-hidden="true"></i> {MAPPED.length}{" "}
+    <Icon name="map-pin" /> {MAPPED.length}{" "}
     sedi · tocca un segnaposto per indicazioni
   </p>
 </div>

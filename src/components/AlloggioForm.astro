@@ -1,3 +1,7 @@
+---
+import Icon from "./Icon.astro";
+---
+
 <form
   class="hotel-form"
   x-data="alloggioForm"
@@ -107,12 +111,12 @@
 
   <div class="hotel-form-actions">
     <button class="hotel-form-submit" type="submit">
-      <i class="ti ti-check" aria-hidden="true"></i>
+      <Icon name="check" />
       Salva
     </button>
     <template x-if="saved">
       <span class="hotel-form-saved" role="status">
-        <i class="ti ti-circle-check" aria-hidden="true"></i>
+        <Icon name="circle-check" />
         Salvato
       </span>
     </template>
