@@ -1,0 +1,71 @@
+---
+import { url } from "../lib/url.ts";
+
+const MENU_ITEMS: Array<{ label: string; href: string }> = [
+  { label: "Come funziona", href: url("info") },
+  { label: "Alloggio", href: url("hotel") },
+  { label: "Lista ristoranti", href: url("ristoranti") },
+  { label: "Dati locali", href: url("local-data") },
+];
+---
+
+<div x-data="navMenu" style="display: contents">
+  <div class="ff-nav-controls">
+    <button
+      class="ff-theme-btn"
+      type="button"
+      @click="toggleTheme()"
+      aria-label="Passa al tema scuro"
+      :aria-label="dark ? 'Passa al tema chiaro' : 'Passa al tema scuro'"
+    >
+      <i
+        class="ti ti-moon"
+        :class="{ 'ti-sun': dark, 'ti-moon': !dark }"
+        aria-hidden="true"
+      ></i>
+    </button>
+    <button
+      class="ff-nav-btn"
+      :class="{ open }"
+      type="button"
+      @click="open = !open"
+      aria-label="Apri menu"
+      :aria-label="open ? 'Chiudi menu' : 'Apri menu'"
+      aria-expanded="false"
+      :aria-expanded="String(open)"
+    >
+      <span class="ff-nav-burger" aria-hidden="true">
+        <span class="ff-nav-line"></span>
+        <span class="ff-nav-line"></span>
+      </span>
+    </button>
+  </div>
+
+  <div
+    class="ff-nav-overlay"
+    :class="{ open }"
+    aria-hidden="true"
+    :aria-hidden="String(!open)"
+    @click="open = false"
+  >
+    <div class="ff-nav-title" aria-hidden="true">
+      festival<em>filosofia</em>
+    </div>
+    <nav class="ff-nav-menu">
+      <button class="ff-nav-item" type="button" @click.stop="goHome()">
+        Torna all'inizio
+      </button>
+      {
+        MENU_ITEMS.map(({ label, href }) => (
+          <button
+            class="ff-nav-item"
+            type="button"
+            @click.stop={`go(${JSON.stringify(href)})`}
+          >
+            {label}
+          </button>
+        ))
+      }
+    </nav>
+  </div>
+</div>

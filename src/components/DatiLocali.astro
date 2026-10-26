@@ -1,0 +1,14 @@
+<div class="dati-locali-actions" x-data="datiLocali">
+  <template x-if="deleted">
+    <p class="dati-locali-done">Dati eliminati.</p>
+  </template>
+  <button
+    class="dati-locali-delete-btn"
+    type="button"
+    x-show="!deleted"
+    @click="remove()"
+  >
+    <i class="ti ti-trash" aria-hidden="true"></i>
+    Cancella tutti i dati locali
+  </button>
+</div>

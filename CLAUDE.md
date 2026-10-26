@@ -5,79 +5,111 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-deno task dev      # start dev server (Vite HMR)
-deno task build    # production build → _fresh/
-deno task start    # serve the production build
-deno task update   # update Fresh to latest
-deno task test     # run unit tests (deno test --allow-read tests/)
+bun install        # install dependencies
+bun run dev        # dev server on :3000, exposed on the LAN → http://<host>:3000/festival-filosofia/
+bun run build      # static build → dist/
+bun run preview    # serve dist/ locally
+bun run check      # type-check .astro and .ts files (astro check)
+bun run test       # run unit tests (vitest)
 ```
 
-Linting uses the `fresh` + `recommended` rule tags from `deno.json`; run with `deno lint`.
+`astro check` does not support TypeScript 7 yet, so `typescript` is pinned to `^6`.
 
 ## Tests
 
-Tests live in `tests/` and use Deno's built-in test runner with `@std/assert`.
+Tests live in `tests/` and use Vitest, configured through Astro's `getViteConfig` (`vitest.config.ts`).
+Components are rendered with Astro's Container API via the `render()` helper in `tests/render.ts`.
 
 | File | What it covers |
 |------|----------------|
-| `tests/restaurants_test.ts` | `data/restaurants.json` — field presence, zero-padded numbering, sequential order, no duplicate names |
-| `tests/sections_test.ts` | `SECTIONS` array in `islands/Sections.tsx` — count, id order, uniqueness, sequential nums, non-empty titles, Content is a function |
-| `tests/components_test.tsx` | Renders each section component via `preact-render-to-string` and asserts key text appears in the output |
+| `tests/programma.test.ts` | `src/data/programma.json` — required fields, unique ids, day codes, HH:MM times |
+| `tests/venues.test.ts` | `src/data/venues.json` — fields, known cities, coordinates, consistency with the programme |
+| `tests/restaurants.test.ts` | `src/data/restaurants.json` — fields, zero-padded sequential numbering, unique names |
+| `tests/hotel.test.ts` | `validateHotelForm` / `hotelTimeLine` and the server-rendered `AlloggioForm` |
+| `tests/sections.test.ts` | `SECTIONS` list, the accordion, and every section component's server output |
+| `tests/layout.test.ts` | `Header`, `Footer`, `NavMenu`, `FineFestivalModal` server output |
 
-To add tests for a new section component, import it in `tests/components_test.tsx` and add a `Deno.test` block using `render(<YourSection />)` and `assertStringIncludes`.
+Tests assert on server-rendered HTML only; Alpine behaviour is not exercised by the suite.
 
 ## Architecture
 
-Single-page companion app for festivalfilosofia 2026 (theme: "caos", 18–20 September, Modena/Carpi/Sassuolo). Built on **Deno Fresh 2.3.3** with **Preact** and **Vite** via `@fresh/plugin-vite`.
+Single-page companion app for festivalfilosofia 2026 (theme: "caos", 18–20 September, Modena/Carpi/Sassuolo).
+Built with **Astro** (static output), **TypeScript** and **Alpine.js** (via `@astrojs/alpinejs`), using **Bun**
+as package manager and script runner. There is no backend: all user data lives in `localStorage`, so htmx
+is not used (there is nothing to fetch from a server).
 
-### Routing & app shell
+### Deployment & base path
 
-- `main.ts` — creates the Fresh `App`, mounts static files middleware, and enables filesystem routing
-- `routes/_app.tsx` — HTML shell (lang, meta, Tabler Icons CDN link, title)
-- `routes/index.tsx` — home page: `Header` + `Sections` island + `Footer` + `FineFestivalModal` island
-- `utils.ts` — exports `define = createDefine<State>()` used in all route files; `State` is the shared middleware state type
+Deployed to GitHub Pages under `/festival-filosofia/` by `.github/workflows/deploy.yml` on every push to
+`main` (build runs in the `oven/bun:alpine` container). `base` is set in `astro.config.mjs`, and
+`build.format: "file"` emits `hotel.html` etc. so URLs stay slash-less (`…/hotel`).
 
-### Islands vs components
+**Every internal link must go through `url()` from `src/lib/url.ts`**, never a bare `/path`. This applies
+in `.astro` files and in client scripts alike. `public/manifest.json` uses relative paths for the same reason.
 
-Fresh's islands architecture applies strictly:
-- `islands/` — interactive (client-hydrated) components: `Sections.tsx` (owns the accordion open/close state via `@preact/signals`), `NavMenu.tsx`, `AlloggioForm.tsx`, `ListaRistoranti.tsx`, `DatiLocali.tsx`, and `FineFestivalModal.tsx`
-- `components/` — static server-rendered components (`Header`, `Footer`) and section content under `components/sections/`
+### Layout
+
+- `src/layouts/Layout.astro` — HTML shell (meta, theme bootstrap script, Tabler Icons CDN, global CSS), wraps
+  every page with `Header` + `Footer`. A `slot="after"` renders after the footer.
+- `src/pages/` — `index`, `hotel`, `info`, `ristoranti`, `local-data`.
+- `src/components/` — Astro components; `src/components/sections/` holds the accordion section bodies.
+- `src/lib/` — framework-free TS shared by components, client scripts and tests (storage keys, validation,
+  data helpers, `url()`).
+- `src/scripts/alpine.ts` — the `@astrojs/alpinejs` entrypoint; registers every `Alpine.data()` component.
+- `src/scripts/components/*.ts` — one Alpine component factory per interactive component, wrapped in
+  `defineComponent()` (`src/scripts/define.ts`) so `this` is typed with Alpine's magics.
+
+### Interactivity pattern
+
+Components are fully server-rendered in their initial state (same markup the user sees before JS runs),
+and Alpine takes over via `x-data="<name>"`. Conventions:
+
+- Render the initial value statically **and** bind it, e.g. `aria-expanded="false" :aria-expanded="String(open)"`.
+  Use `String(...)` for aria booleans; Alpine drops attributes whose value is `false`.
+- Use `:class="{ name: cond }"` (object form) to toggle classes that are also present statically.
+- Content that must not exist until JS decides (error messages, saved-data cards) goes in `<template x-if>`.
+  Content that is visible on first paint uses `x-show`.
+- Never store Leaflet (or other third-party) objects in Alpine state; keep them in a closure (see
+  `map-section.ts`), as Alpine's reactive proxies break them.
+- An `x-data` wrapper around sibling elements uses `style="display: contents"` to keep the original layout;
+  mind structural selectors such as `.risto-item:last-child` when adding wrappers.
 
 ### End-of-edition modal
 
-`islands/FineFestivalModal.tsx` shows a dismissable modal on load announcing that the 2026 edition
-is over and that the next one is *mito*, 17–19 September 2027. It is mounted on `routes/index.tsx`
-only (not `_app.tsx`): dismissal is deliberately **not** persisted, and the nav menu does full page
-loads, so an app-wide mount would re-show it on every internal navigation. Open state is
-`useSignal(true)`, so it renders open during SSR with no hydration flash. Styles live under
-`/* FINE FESTIVAL MODAL */` at the end of `assets/style.css`. To update it for a future edition,
-edit the `PROSSIMA` const at the top of the island.
+`src/components/FineFestivalModal.astro` shows a dismissable modal on load announcing that the 2026 edition
+is over and that the next one is *mito*, 17–19 September 2027. It is mounted on `src/pages/index.astro` only
+(not the layout): dismissal is deliberately **not** persisted, and the nav menu does full page loads, so a
+layout-wide mount would re-show it on every page. It renders open server-side, so there is no flash.
+Styles live under `/* FINE FESTIVAL MODAL */` at the end of `src/styles/style.css`. To update it for a
+future edition, edit the `PROSSIMA` const at the top of the component.
 
 ### Sections
 
-`islands/Sections.tsx` renders an accordion of six sections, each backed by a component in `components/sections/`:
+`src/components/Sections.astro` renders an accordion of six sections (Alpine `sections` component), listed in
+`SECTIONS` in `src/lib/sections.ts`:
 
 | id | Component | Notes |
 |----|-----------|-------|
 | info | `InfoSection` | Quick reference info |
-| mappa | `MapSection` | Placeholder; map due July 2026 |
-| programma | `ProgrammaSection` | Event schedule |
-| hotel | `HotelSection` | Hotel Canalgrande details + SVG map placeholder |
-| ristoranti | `RistorantiSection` | Reads `data/restaurants.json` |
+| mappa | `MapSection` | Leaflet + OSM map of venues, lazily loaded client-side |
+| programma | `ProgrammaSection` | Event schedule with day/city filters and bookmarks |
+| hotel | `HotelSection` | Shows hotel data saved on `/hotel` |
+| ristoranti | `RistorantiSection` | Sample `src/data/restaurants.json`, or the user's list from `/ristoranti` |
 | note | `NotePad` | `localStorage`-persisted textarea |
 
-To add a new section: create the component in `components/sections/`, import it in `islands/Sections.tsx`, and append an entry to the `SECTIONS` array.
+To add a section: create the component in `src/components/sections/`, append an entry to `SECTIONS`, and map
+its id in the `CONTENT` object in `Sections.astro`.
 
 ### Styles & assets
 
-- `assets/style.css` — all styles; imported by `client.ts` (the Vite client entry)
-- `client.ts` — sole purpose is `import "./assets/style.css"`, making styles part of the Vite bundle
-- Tabler Icons loaded from CDN webfont; use class `ti ti-<name>` with `aria-hidden="true"`
+- `src/styles/style.css` — all styles; imported by `Layout.astro` (with Leaflet's CSS).
+- Page changes cross-fade via native cross-document view transitions (`@view-transition` at the top of
+  `style.css`, disabled under `prefers-reduced-motion`). Don't add Astro's `<ClientRouter />`: it would
+  turn navigation into an SPA and break Alpine's per-page init and the modal's show-on-every-load.
+- `public/` — static files copied as-is (`manifest.json`, `icons/`).
+- Tabler Icons loaded from CDN webfont; use `<i class="ti ti-<name>" aria-hidden="true"></i>`.
 
 ### Data
 
-Static JSON files in `data/` (e.g. `restaurants.json`). Import them directly in components; no API layer.
-
-### JSX
-
-Using Preact's `precompile` JSX transform (`jsxImportSource: "preact"` in `deno.json`). HTML intrinsic elements listed in `jsxPrecompileSkipElements` are not precompiled (passed through as-is).
+Static JSON in `src/data/`. Import it directly; no API layer. All `localStorage` keys are listed in
+`STORAGE_KEYS` (`src/lib/storage.ts`); `/local-data` wipes exactly those, so add new keys there.

@@ -1,0 +1,50 @@
+---
+import InfoSection from "./sections/InfoSection.astro";
+import MapSection from "./sections/MapSection.astro";
+import ProgrammaSection from "./sections/ProgrammaSection.astro";
+import HotelSection from "./sections/HotelSection.astro";
+import RistorantiSection from "./sections/RistorantiSection.astro";
+import NotePad from "./sections/NotePad.astro";
+import { SECTIONS } from "../lib/sections.ts";
+
+const CONTENT = {
+  info: InfoSection,
+  mappa: MapSection,
+  programma: ProgrammaSection,
+  hotel: HotelSection,
+  ristoranti: RistorantiSection,
+  note: NotePad,
+};
+---
+
+<main class="ff-sections" id="sections" x-data="sections">
+  {
+    SECTIONS.map(({ id, num, title }, i) => {
+      const Content = CONTENT[id];
+      const openOnLoad = i === 0;
+      return (
+        <section
+          class:list={["ff-section", { open: openOnLoad }]}
+          :class={`{ open: isOpen('${id}') }`}
+          data-id={id}
+        >
+          <button
+            class="ff-section-header"
+            type="button"
+            @click={`toggle('${id}')`}
+            aria-expanded={openOnLoad ? "true" : "false"}
+            :aria-expanded={`String(isOpen('${id}'))`}
+            aria-controls={`section-${id}`}
+          >
+            <span class="ff-section-num">{num}</span>
+            <span class="ff-section-title">{title}</span>
+            <i class="ti ti-chevron-down ff-section-arrow" aria-hidden="true" />
+          </button>
+          <div class="ff-section-body" id={`section-${id}`}>
+            <Content />
+          </div>
+        </section>
+      );
+    })
+  }
+</main>

@@ -1,0 +1,29 @@
+---
+import { MAP_FILTERS, MAPPED } from "../../lib/venues.ts";
+---
+
+<!-- Leaflet runs client-side only (see scripts/components/map-section.ts):
+     the server emits the filter buttons and an empty map container. -->
+<div x-data="mapSection" style="display: contents">
+  <div class="ff-map-filter" role="group" aria-label="Filtra per città">
+    {
+      MAP_FILTERS.map((f) => (
+        <button
+          type="button"
+          class:list={["ff-map-filter-btn", { active: f.value === "all" }]}
+          :class={`{ active: active === '${f.value}' }`}
+          @click={`active = '${f.value}'`}
+          aria-pressed={f.value === "all" ? "true" : "false"}
+          :aria-pressed={`String(active === '${f.value}')`}
+        >
+          {f.label}
+        </button>
+      ))
+    }
+  </div>
+  <div x-ref="map" class="ff-map" aria-label="Mappa delle sedi"></div>
+  <p class="ff-map-note">
+    <i class="ti ti-map-pin" aria-hidden="true"></i> {MAPPED.length}{" "}
+    sedi · tocca un segnaposto per indicazioni
+  </p>
+</div>

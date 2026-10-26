@@ -1,0 +1,42 @@
+---
+import staticData from "../../data/restaurants.json";
+import { url } from "../../lib/url.ts";
+---
+
+<!-- Sample restaurants are server-rendered; once the user has saved a list on
+     /ristoranti, Alpine shows theirs instead. Each list has its own wrapper so
+     `.risto-item:last-child` matches the last visible item. -->
+<div x-data="ristorantiSection" style="display: contents">
+  <p class="risto-sample-hint" x-show="isSample">
+    Dati di esempio —{" "}
+    <a href={url("ristoranti")} class="risto-sample-link">aggiungi i tuoi →</a>
+  </p>
+  <div x-show="isSample">
+    {
+      staticData.map((item, i) => (
+        <div class="risto-item">
+          <div class="risto-n">{String(i + 1).padStart(2, "0")}</div>
+          <div class="risto-info">
+            <div class="risto-name">{item.name}</div>
+            <div class="risto-type">{item.type}</div>
+            <div class="risto-addr">{item.addr}</div>
+            <div class="risto-when">{item.when}</div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div>
+    <template x-for="(item, i) in items" :key="i">
+      <div class="risto-item">
+        <div class="risto-n" x-text="String(i + 1).padStart(2, '0')"></div>
+        <div class="risto-info">
+          <div class="risto-name" x-text="item.name"></div>
+          <div class="risto-type" x-text="item.type"></div>
+          <div class="risto-addr" x-text="item.addr"></div>
+          <div class="risto-when" x-text="item.when"></div>
+        </div>
+      </div>
+    </template>
+  </div>
+</div>

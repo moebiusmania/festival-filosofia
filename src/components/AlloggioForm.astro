@@ -1,0 +1,120 @@
+<form
+  class="hotel-form"
+  x-data="alloggioForm"
+  @submit.prevent="submit()"
+  @input="saved = false"
+  novalidate
+>
+  <div class="hotel-form-group">
+    <label class="hotel-form-label" for="hf-nome">
+      Nome hotel{" "}
+      <span class="hotel-form-required" aria-hidden="true">*</span>
+    </label>
+    <input
+      id="hf-nome"
+      class="hotel-form-input"
+      :class="{ 'hotel-form-input--error': errors.nome }"
+      type="text"
+      x-model="form.nome"
+      placeholder="es. Hotel Canalgrande"
+      aria-required="true"
+      :aria-describedby="errors.nome ? 'hf-nome-err' : null"
+    />
+    <template x-if="errors.nome">
+      <span id="hf-nome-err" class="hotel-form-error" role="alert" x-text="errors.nome"></span>
+    </template>
+  </div>
+
+  <div class="hotel-form-group">
+    <label class="hotel-form-label" for="hf-indirizzo">Indirizzo</label>
+    <input
+      id="hf-indirizzo"
+      class="hotel-form-input"
+      type="text"
+      x-model="form.indirizzo"
+      placeholder="es. Corso Canalgrande 6, 41121 Modena"
+    />
+  </div>
+
+  <div class="hotel-form-row">
+    <div class="hotel-form-group">
+      <label class="hotel-form-label" for="hf-checkin">Check-in</label>
+      <input
+        id="hf-checkin"
+        class="hotel-form-input"
+        type="text"
+        x-model="form.checkin"
+        placeholder="es. 15:00"
+      />
+    </div>
+    <div class="hotel-form-group">
+      <label class="hotel-form-label" for="hf-checkout">Check-out</label>
+      <input
+        id="hf-checkout"
+        class="hotel-form-input"
+        type="text"
+        x-model="form.checkout"
+        placeholder="es. 11:00"
+      />
+    </div>
+  </div>
+
+  <div class="hotel-form-group">
+    <label class="hotel-form-label" for="hf-ref">
+      Riferimento prenotazione
+    </label>
+    <input
+      id="hf-ref"
+      class="hotel-form-input"
+      type="text"
+      x-model="form.ref"
+      placeholder="es. FF2026-GRP"
+    />
+  </div>
+
+  <div class="hotel-form-group">
+    <label class="hotel-form-label" for="hf-mapUrl">
+      Link Google Maps embed
+    </label>
+    <input
+      id="hf-mapUrl"
+      class="hotel-form-input"
+      :class="{ 'hotel-form-input--error': errors.mapUrl }"
+      type="url"
+      x-model="form.mapUrl"
+      placeholder="https://www.google.com/maps/embed?pb=..."
+      aria-describedby="hf-mapUrl-hint"
+      :aria-describedby="errors.mapUrl ? 'hf-mapUrl-err hf-mapUrl-hint' : 'hf-mapUrl-hint'"
+    />
+    <span id="hf-mapUrl-hint" class="hotel-form-hint">
+      Google Maps → Condividi → Incorpora una mappa → copia il{" "}
+      <code>src</code> dell'iframe
+    </span>
+    <template x-if="errors.mapUrl">
+      <span id="hf-mapUrl-err" class="hotel-form-error" role="alert" x-text="errors.mapUrl"></span>
+    </template>
+  </div>
+
+  <div class="hotel-form-group">
+    <label class="hotel-form-label" for="hf-note">Note libere</label>
+    <textarea
+      id="hf-note"
+      class="hotel-form-textarea"
+      x-model="form.note"
+      placeholder="Prenotazione di gruppo, parcheggio convenzionato..."
+      rows="3"></textarea>
+  </div>
+
+  <div class="hotel-form-actions">
+    <button class="hotel-form-submit" type="submit">
+      <i class="ti ti-check" aria-hidden="true"></i>
+      Salva
+    </button>
+    <template x-if="saved">
+      <span class="hotel-form-saved" role="status">
+        <i class="ti ti-circle-check" aria-hidden="true"></i>
+        Salvato
+      </span>
+    </template>
+  </div>
+</form>

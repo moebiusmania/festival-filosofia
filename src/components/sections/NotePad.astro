@@ -1,0 +1,23 @@
+<div class="notepad-wrap" x-data="notePad">
+  <div class="notepad-top">
+    <label for="ff-notes">Il mio taccuino</label>
+    <div class="notepad-rings">
+      <div class="notepad-ring" aria-hidden="true"></div>
+      <div class="notepad-ring" aria-hidden="true"></div>
+      <div class="notepad-ring" aria-hidden="true"></div>
+    </div>
+  </div>
+  <div class="notepad-inner">
+    <div class="notepad-lines-bg"></div>
+    <div class="notepad-margin-line"></div>
+    <textarea
+      id="ff-notes"
+      x-model="value"
+      @input="save()"
+      placeholder="Scrivi qui le tue note, riflessioni, citazioni dalle lezioni..."
+      aria-label="Note personali"></textarea>
+  </div>
+</div>
+<p class="ff-note-disclaimer">
+  Le note vengono salvate localmente sul dispositivo
+</p>

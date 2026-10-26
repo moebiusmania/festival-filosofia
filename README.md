@@ -18,32 +18,34 @@ Una piccola app web pensata per chi partecipa al festival: raccoglie in un unico
 
 ## Stack
 
-- **Runtime:** [Deno](https://deno.com/)
-- **Framework:** [Fresh 2](https://fresh.deno.dev/) (routing filesystem, islands architecture)
-- **UI:** [Preact](https://preactjs.com/) + [Preact Signals](https://preactjs.com/guide/v10/signals/)
-- **Bundler:** [Vite](https://vite.dev/) via `@fresh/plugin-vite`
+- **Runtime / package manager:** [Bun](https://bun.sh/)
+- **Framework:** [Astro](https://astro.build/) (sito statico, routing filesystem) + TypeScript
+- **Interattività:** [Alpine.js](https://alpinejs.dev/)
+- **Deploy:** GitHub Pages tramite GitHub Actions a ogni push su `main`
 - **Mappa:** [Leaflet](https://leafletjs.com/) + tile [OpenStreetMap](https://www.openstreetmap.org/) (nessuna API key)
 - **Icone:** [Tabler Icons](https://tabler.io/icons) (CDN webfont)
 
 ## Setup locale
 
-**Requisiti:** Deno ≥ 2.x installato.
+**Requisiti:** Bun installato.
 
 ```bash
 # clona il repository
 git clone https://github.com/moebiusmania/festival-filosofia.git
 cd festival-filosofia
 
-# avvia il dev server con hot-reload
-deno task dev
+# installa le dipendenze e avvia il dev server con hot-reload (esposto in LAN)
+bun install
+bun run dev       # → http://localhost:3000/festival-filosofia/
 ```
 
 Altri comandi disponibili:
 
 ```bash
-deno task build   # build di produzione → _fresh/
-deno task start   # serve la build di produzione
-deno task update  # aggiorna Fresh all'ultima versione
+bun run build     # build di produzione → dist/
+bun run preview   # serve la build di produzione
+bun run test      # test
+bun run check     # controllo dei tipi
 ```
 
 ## Licenza
@@ -70,32 +72,34 @@ A small web app for festival attendees: it gathers practical information in one 
 
 ## Stack
 
-- **Runtime:** [Deno](https://deno.com/)
-- **Framework:** [Fresh 2](https://fresh.deno.dev/) (filesystem routing, islands architecture)
-- **UI:** [Preact](https://preactjs.com/) + [Preact Signals](https://preactjs.com/guide/v10/signals/)
-- **Bundler:** [Vite](https://vite.dev/) via `@fresh/plugin-vite`
+- **Runtime / package manager:** [Bun](https://bun.sh/)
+- **Framework:** [Astro](https://astro.build/) (static site, filesystem routing) + TypeScript
+- **Interactivity:** [Alpine.js](https://alpinejs.dev/)
+- **Deploy:** GitHub Pages via GitHub Actions on every push to `main`
 - **Map:** [Leaflet](https://leafletjs.com/) + [OpenStreetMap](https://www.openstreetmap.org/) tiles (no API key)
 - **Icons:** [Tabler Icons](https://tabler.io/icons) (CDN webfont)
 
 ## Local setup
 
-**Requirements:** Deno ≥ 2.x installed.
+**Requirements:** Bun installed.
 
 ```bash
 # clone the repository
 git clone https://github.com/moebiusmania/festival-filosofia.git
 cd festival-filosofia
 
-# start the dev server with hot-reload
-deno task dev
+# install dependencies and start the dev server with hot-reload (exposed on the LAN)
+bun install
+bun run dev       # → http://localhost:3000/festival-filosofia/
 ```
 
 Other available commands:
 
 ```bash
-deno task build   # production build → _fresh/
-deno task start   # serve the production build
-deno task update  # update Fresh to the latest version
+bun run build     # production build → dist/
+bun run preview   # serve the production build
+bun run test      # tests
+bun run check     # type-check
 ```
 
 ## License

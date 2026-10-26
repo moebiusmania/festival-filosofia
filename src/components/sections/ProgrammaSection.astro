@@ -1,0 +1,92 @@
+---
+import { CITIES, DAYS, EVENTS } from "../../lib/programma.ts";
+
+const DAY_FILTERS = [{ value: "all", label: "Tutti i giorni" }, ...DAYS.map((d) => ({ value: d.code, label: d.label }))];
+const CITY_FILTERS = [{ value: "all", label: "Tutte le sedi" }, ...CITIES.map((c) => ({ value: c, label: c }))];
+---
+
+<div x-data="programma" style="display: contents">
+  <p class="prog-disclaimer">
+    Programma indicativo — soggetto a variazioni
+  </p>
+  <p class="prog-bookmark-hint">
+    Tocca un evento per salvarlo con il segnalibro{" "}
+    <i class="ti ti-bookmark-filled" aria-hidden="true"></i>
+    {" "}— tocca di nuovo per rimuoverlo.
+  </p>
+
+  <div class="prog-filters">
+    <div class="prog-filter-group" role="group" aria-label="Filtra per giorno">
+      {
+        DAY_FILTERS.map((f) => (
+          <button
+            type="button"
+            class:list={["prog-filter", { "prog-filter--active": f.value === "all" }]}
+            :class={`{ 'prog-filter--active': dayFilter === '${f.value}' }`}
+            aria-pressed={f.value === "all" ? "true" : "false"}
+            :aria-pressed={`String(dayFilter === '${f.value}')`}
+            @click={`dayFilter = '${f.value}'`}
+          >
+            {f.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="prog-filter-group" role="group" aria-label="Filtra per luogo">
+      {
+        CITY_FILTERS.map((f) => (
+          <button
+            type="button"
+            class:list={["prog-filter", { "prog-filter--active": f.value === "all" }]}
+            :class={`{ 'prog-filter--active': cityFilter === '${f.value}' }`}
+            aria-pressed={f.value === "all" ? "true" : "false"}
+            :aria-pressed={`String(cityFilter === '${f.value}')`}
+            @click={`cityFilter = '${f.value}'`}
+          >
+            {f.label}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  {
+    DAYS.map((d) => (
+      <div class="prog-day" x-show={`dayVisible('${d.code}')`}>
+        <div class="prog-day-header">{d.label} settembre</div>
+        {EVENTS.filter((e) => e.day === d.code).map((e) => (
+          <div
+            class="prog-event"
+            :class={`{ 'prog-event--bookmarked': isBookmarked('${e.id}') }`}
+            x-show={`matches('${e.day}', '${e.city}')`}
+            @click={`toggle('${e.id}')`}
+            @keydown.enter={`toggle('${e.id}')`}
+            @keydown.space={`toggle('${e.id}')`}
+            role="button"
+            tabindex="0"
+            aria-pressed="false"
+            :aria-pressed={`String(isBookmarked('${e.id}'))`}
+          >
+            <div class="prog-time">{e.time}</div>
+            <div class="prog-info">
+              <div class="prog-category">{e.category}</div>
+              <div class="prog-title">{e.title}</div>
+              {e.speaker && <div class="prog-speaker">{e.speaker}</div>}
+              <div class="prog-place">{e.venue} · {e.city}</div>
+            </div>
+            <template x-if={`isBookmarked('${e.id}')`}>
+              <svg class="prog-bookmark-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 2H6a2 2 0 0 0-2 2v18l8-4 8 4V4a2 2 0 0 0-2-2z" />
+              </svg>
+            </template>
+          </div>
+        ))}
+      </div>
+    ))
+  }
+
+  <template x-if="noneVisible">
+    <p class="prog-empty">Nessun evento per i filtri selezionati.</p>
+  </template>
+</div>

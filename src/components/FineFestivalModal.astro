@@ -1,0 +1,70 @@
+---
+// Update for a future edition here.
+const PROSSIMA = {
+  tema: "mito",
+  date: "17–19 settembre 2027",
+  città: "Modena · Carpi · Sassuolo",
+};
+
+const SITO = "https://www.festivalfilosofia.it/";
+---
+
+<div
+  x-data="fineFestivalModal"
+  class="ff-modal-overlay open"
+  :class="{ open }"
+  aria-hidden="false"
+  :aria-hidden="String(!open)"
+  @click="close()"
+  @keydown.window="onKeyDown($event)"
+>
+  <div
+    x-ref="card"
+    class="ff-modal-card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="ff-modal-title"
+    @click.stop
+  >
+    <button
+      x-ref="close"
+      class="ff-modal-close"
+      type="button"
+      @click="close()"
+      aria-label="Chiudi l'avviso"
+    >
+      <i class="ti ti-x" aria-hidden="true"></i>
+    </button>
+
+    <p class="ff-modal-eyebrow">edizione 2026 · conclusa</p>
+    <h2 class="ff-modal-title" id="ff-modal-title">
+      Ci vediamo l'anno prossimo
+    </h2>
+    <p class="ff-modal-body">
+      Il festivalfilosofia 2026 su <em>caos</em> si è concluso il 20
+      settembre. Grazie di aver camminato con noi tra Modena, Carpi e
+      Sassuolo.
+    </p>
+
+    <div class="ff-modal-next">
+      <p class="ff-modal-eyebrow">la prossima edizione</p>
+      <p class="ff-modal-tema">{PROSSIMA.tema}</p>
+      <p class="ff-modal-date">{PROSSIMA.date}</p>
+      <p class="ff-modal-cities">{PROSSIMA.città}</p>
+    </div>
+
+    <div class="ff-modal-actions">
+      <button class="ff-modal-btn" type="button" @click="close()">
+        Chiudi
+      </button>
+      <a
+        class="ff-modal-link"
+        href={SITO}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Sito ufficiale
+      </a>
+    </div>
+  </div>
+</div>
