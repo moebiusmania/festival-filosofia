@@ -2,20 +2,20 @@ import { describe, expect, test } from "vitest";
 import Header from "../src/components/Header.astro";
 import Footer from "../src/components/Footer.astro";
 import NavMenu from "../src/components/NavMenu.astro";
-import FineFestivalModal from "../src/components/FineFestivalModal.astro";
+import WelcomeModal from "../src/components/WelcomeModal.astro";
 import { render } from "./render.ts";
 
 describe("Header", () => {
   test("renders edition tag, name and theme", async () => {
     const html = await render(Header);
-    expect(html).toContain("XXVI edizione");
+    expect(html).toContain("XXVII edizione");
     expect(html).toContain("festival<em>filosofia</em>");
-    expect(html).toContain("caos");
+    expect(html).toContain("mito");
   });
 
   test("renders event dates and cities", async () => {
     const html = await render(Header);
-    expect(html).toContain("settembre 2026");
+    expect(html).toContain("17 · 18 · 19 settembre 2027");
     expect(html).toContain("Modena · Carpi · Sassuolo");
   });
 
@@ -29,7 +29,7 @@ describe("Footer", () => {
   test("renders festival name, cities and decorative dot", async () => {
     const html = await render(Footer);
     expect(html).toContain("ff-footer");
-    expect(html).toContain("festivalfilosofia 2026");
+    expect(html).toContain("festivalfilosofia 2027");
     expect(html).toContain("modena · carpi · sassuolo");
     expect(html).toContain('class="red-dot" aria-hidden="true"');
   });
@@ -58,11 +58,12 @@ describe("NavMenu", () => {
 
   test("renders all menu items with base-prefixed links", async () => {
     const html = await render(NavMenu);
-    expect(html).toContain("Torna all'inizio");
+    expect(html).toMatch(/Torna all(&#39;|')inizio/);
     for (const [label, path] of [
       ["Come funziona", "info"],
       ["Alloggio", "hotel"],
       ["Lista ristoranti", "ristoranti"],
+      ["Impostazioni", "impostazioni"],
       ["Dati locali", "local-data"],
     ]) {
       expect(html).toContain(label);
@@ -76,34 +77,35 @@ describe("NavMenu", () => {
   });
 });
 
-describe("FineFestivalModal", () => {
-  test("renders open on load", async () => {
-    const html = await render(FineFestivalModal);
+describe("WelcomeModal", () => {
+  test("renders open on load (hidden client-side once seen)", async () => {
+    const html = await render(WelcomeModal);
     expect(html).toContain('class="ff-modal-overlay open"');
   });
 
-  test("announces the 2027 edition", async () => {
-    const html = await render(FineFestivalModal);
+  test("is stamped with the edition it welcomes", async () => {
+    const html = await render(WelcomeModal);
+    expect(html).toContain('data-edition="2027"');
+  });
+
+  test("welcomes the 2027 edition on mito", async () => {
+    const html = await render(WelcomeModal);
+    expect(html).toContain("XXVII edizione · 2027");
+    expect(html).toContain("Benvenuti al festivalfilosofia 2027");
     expect(html).toContain("mito");
     expect(html).toContain("17–19 settembre 2027");
     expect(html).toContain("Modena · Carpi · Sassuolo");
   });
 
-  test("says the 2026 edition is over", async () => {
-    const html = await render(FineFestivalModal);
-    expect(html).toContain("2026");
-    expect(html).toContain("conclus");
-  });
-
   test("is an accessible dialog", async () => {
-    const html = await render(FineFestivalModal);
+    const html = await render(WelcomeModal);
     expect(html).toContain('role="dialog"');
     expect(html).toContain('aria-modal="true"');
     expect(html).toContain('aria-labelledby="ff-modal-title"');
   });
 
   test("links to the official site", async () => {
-    const html = await render(FineFestivalModal);
+    const html = await render(WelcomeModal);
     expect(html).toContain("https://www.festivalfilosofia.it/");
     expect(html).toContain('rel="noopener noreferrer"');
   });

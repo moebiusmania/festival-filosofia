@@ -1,0 +1,38 @@
+---
+import Decor from "./Decor.astro";
+import { DECORS, DEFAULT_DECOR } from "../lib/decor.ts";
+---
+
+<div class="ff-settings" x-data="settings">
+  <fieldset class="ff-setting">
+    <legend class="ff-setting-title">Decorazione</legend>
+    <p class="ff-setting-hint">
+      Il motivo grafico dell'app, ispirato al tema di un'edizione del festival.
+    </p>
+    <div class="ff-decor-options">
+      {
+        DECORS.map((d) => (
+          <label
+            class:list={["ff-decor-option", { selected: d.id === DEFAULT_DECOR }]}
+            :class={`{ selected: decor === '${d.id}' }`}
+          >
+            <input
+              type="radio"
+              name="decor"
+              value={d.id}
+              checked={d.id === DEFAULT_DECOR}
+              :checked={`decor === '${d.id}'`}
+              @change={`setDecor('${d.id}')`}
+            />
+            <Decor class="ff-decor-option-preview" variant={d.id} />
+            <span class="ff-decor-option-text">
+              <span class="ff-decor-option-tema">{d.id}</span>
+              <span class="ff-decor-option-year">{d.year}</span>
+              <span class="ff-decor-option-motif">{d.motif}</span>
+            </span>
+          </label>
+        ))
+      }
+    </div>
+  </fieldset>
+</div>

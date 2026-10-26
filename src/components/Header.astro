@@ -1,11 +1,18 @@
 ---
 import NavMenu from "./NavMenu.astro";
+import Decor from "./Decor.astro";
+import ParticleField from "./ParticleField.astro";
+import { scatter } from "../lib/motifs.ts";
 import { url } from "../lib/url.ts";
+
+const letters = scatter("mito", 2027);
 ---
 
 <header class="ff-header">
+  <ParticleField />
+  <Decor class="ff-header-decor" />
   <div class="ff-header-top">
-    <div class="edition-tag">XXVI edizione · companion app</div>
+    <div class="edition-tag">XXVII edizione · companion app</div>
     <NavMenu />
   </div>
   <h1 class="logo-line">
@@ -13,9 +20,24 @@ import { url } from "../lib/url.ts";
   </h1>
   <div class="theme-block">
     <span class="theme-label">tema</span>
-    <span class="theme-word">caos</span>
+    <span class="theme-word">
+      <span class="sr-only">mito</span>
+      <span class="theme-letters" aria-hidden="true">
+        {
+          letters.map((l, i) => (
+            <span
+              class="theme-letter"
+              style={`--dx:${l.dx}px;--dy:${l.dy}px;--rot:${l.rot}deg;--i:${i}`}
+            >
+              {l.char}
+            </span>
+          ))
+        }
+      </span>
+    </span>
   </div>
   <div class="dates">
-    18 · 19 · 20 settembre 2026 &emsp; Modena · Carpi · Sassuolo
+    <span>17 · 18 · 19 settembre 2027</span>
+    <span>Modena · Carpi · Sassuolo</span>
   </div>
 </header>

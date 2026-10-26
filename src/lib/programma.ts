@@ -16,9 +16,9 @@ export const EVENTS = programma as ProgEvent[];
 // Day codes in chronological order, with their display labels. Only days that
 // actually appear in the data are kept.
 export const DAYS = [
-  { code: "ven", label: "Venerdì 18" },
-  { code: "sab", label: "Sabato 19" },
-  { code: "dom", label: "Domenica 20" },
+  { code: "ven", label: "Venerdì 17" },
+  { code: "sab", label: "Sabato 18" },
+  { code: "dom", label: "Domenica 19" },
 ].filter((d) => EVENTS.some((e) => e.day === d.code));
 
 // Location filter options, in preferred display order, limited to the data.

@@ -3,7 +3,6 @@
 import type { Alpine } from "alpinejs";
 import { alloggioForm } from "./components/alloggio-form.ts";
 import { datiLocali } from "./components/dati-locali.ts";
-import { fineFestivalModal } from "./components/fine-festival-modal.ts";
 import { hotelSection } from "./components/hotel-section.ts";
 import { listaRistoranti } from "./components/lista-ristoranti.ts";
 import { mapSection } from "./components/map-section.ts";
@@ -12,11 +11,12 @@ import { notePad } from "./components/note-pad.ts";
 import { programma } from "./components/programma.ts";
 import { ristorantiSection } from "./components/ristoranti-section.ts";
 import { sections } from "./components/sections.ts";
+import { settings } from "./components/settings.ts";
+import { welcomeModal } from "./components/welcome-modal.ts";
 
 export default (Alpine: Alpine) => {
   Alpine.data("alloggioForm", alloggioForm);
   Alpine.data("datiLocali", datiLocali);
-  Alpine.data("fineFestivalModal", fineFestivalModal);
   Alpine.data("hotelSection", hotelSection);
   Alpine.data("listaRistoranti", listaRistoranti);
   Alpine.data("mapSection", mapSection);
@@ -25,4 +25,6 @@ export default (Alpine: Alpine) => {
   Alpine.data("programma", programma);
   Alpine.data("ristorantiSection", ristorantiSection);
   Alpine.data("sections", sections);
+  Alpine.data("settings", settings);
+  Alpine.data("welcomeModal", welcomeModal);
 };

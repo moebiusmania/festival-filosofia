@@ -2,6 +2,9 @@
 export const STORAGE_KEYS = {
   notes: "ff2026-notes",
   theme: "ff-theme",
+  decor: "ff-decor",
+  // Holds the edition year whose welcome modal has been shown.
+  welcome: "ff-welcome",
   bookmarks: "ff2026-bookmarks",
   hotel: "ff2026-hotel",
   ristoranti: "ff2026-lista-ristoranti",

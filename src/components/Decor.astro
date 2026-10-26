@@ -1,0 +1,21 @@
+---
+import type { DecorId } from "../lib/decor.ts";
+
+// Decorative motif; requires <DecorSprite /> on the page (Layout). Without
+// `variant` it follows the user's choice (html[data-decor]); with it, it
+// always shows that motif (used for previews in the settings).
+interface Props {
+  class?: string;
+  variant?: DecorId;
+}
+const { class: className, variant } = Astro.props;
+---
+
+<svg
+  class:list={["ff-decor", { "ff-decor--fixed": variant }, className]}
+  viewBox="0 0 100 100"
+  aria-hidden="true"
+>
+  {(!variant || variant === "mito") && <use class="ff-decor-mito" href="#ff-orion" />}
+  {(!variant || variant === "caos") && <use class="ff-decor-caos" href="#ff-lorenz" />}
+</svg>

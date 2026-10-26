@@ -1,0 +1,27 @@
+---
+import { lorenzPath, orion } from "../lib/motifs.ts";
+
+// Computed once per build; every <Decor /> references these with <use>.
+const lorenz = lorenzPath();
+const sky = orion();
+---
+
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+  <defs>
+    <path id="ff-lorenz" d={lorenz} pathLength="1"></path>
+    <g id="ff-orion">
+      <path class="ff-orion-lines" d={sky.lines} pathLength="1"></path>
+      {
+        sky.stars.map((s) => (
+          <circle
+            class="ff-star"
+            cx={s.x}
+            cy={s.y}
+            r={s.r}
+            style={`animation-delay:${s.delay.toFixed(1)}s`}
+          />
+        ))
+      }
+    </g>
+  </defs>
+</svg>

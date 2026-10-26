@@ -1,0 +1,22 @@
+---
+import { particles } from "../lib/motifs.ts";
+
+interface Props {
+  count?: number;
+  seed?: number;
+  class?: string;
+}
+const { count = 36, seed = 26, class: className } = Astro.props;
+const dots = particles(count, seed);
+---
+
+<div class:list={["ff-particles", className]} aria-hidden="true">
+  {
+    dots.map((p) => (
+      <span
+        class:list={["ff-particle", { "ff-particle--red": p.red }]}
+        style={`left:${p.x.toFixed(1)}%;top:${p.y.toFixed(1)}%;--r:${p.r.toFixed(1)}px;--dx:${p.dx.toFixed(0)}px;--dy:${p.dy.toFixed(0)}px;animation-delay:${p.delay.toFixed(1)}s;animation-duration:${p.duration.toFixed(1)}s`}
+      />
+    ))
+  }
+</div>

@@ -1,9 +1,16 @@
 import { defineComponent } from "../define.ts";
+import { STORAGE_KEYS, writeText } from "../../lib/storage.ts";
 
-// Open on every load; dismissal is deliberately not persisted.
-export const fineFestivalModal = defineComponent(() => ({
+// Shown once per edition: the first time it opens, the edition year is
+// stored, and the head script hides it on later visits (html[data-welcome]).
+export const welcomeModal = defineComponent(() => ({
   open: true,
   init() {
+    if (document.documentElement.dataset.welcome === "seen") {
+      this.open = false;
+      return;
+    }
+    writeText(STORAGE_KEYS.welcome, this.$el.dataset.edition ?? "");
     document.body.style.overflow = "hidden";
     (this.$refs.close as HTMLElement).focus();
   },

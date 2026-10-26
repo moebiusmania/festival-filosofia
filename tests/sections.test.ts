@@ -47,10 +47,10 @@ describe("Sections", () => {
 describe("InfoSection", () => {
   test("renders dates, theme, admission and edition", async () => {
     const html = await render(InfoSection);
-    expect(html).toContain("18–20 set. 2026");
-    expect(html).toContain("caos");
+    expect(html).toContain("17–19 set. 2027");
+    expect(html).toContain("mito");
     expect(html).toContain("Gratuito");
-    expect(html).toContain("XXVI");
+    expect(html).toContain("XXVII");
   });
 
   test("renders all three cities in description", async () => {
@@ -78,41 +78,22 @@ describe("MapSection", () => {
   });
 });
 
+// The 2027 programme isn't published yet: the section shows a placeholder.
+// Once src/data/programma.json has events, replace these with tests for the
+// filters, day headers and events.
 describe("ProgrammaSection", () => {
-  test("renders disclaimer", async () => {
+  test("renders the 'programma in arrivo' placeholder", async () => {
     const html = await render(ProgrammaSection);
-    expect(html).toContain("Programma indicativo");
+    expect(html).toContain("prog-placeholder");
+    expect(html).toContain("Programma in arrivo");
+    expect(html).toContain("edizione 2027");
+    expect(html).toContain("https://www.festivalfilosofia.it/");
   });
 
-  test("renders day headers for days present in data", async () => {
+  test("does not render filters or events without data", async () => {
     const html = await render(ProgrammaSection);
-    expect(html).toContain("Venerdì 18 settembre");
-    expect(html).toContain("Sabato 19 settembre");
-  });
-
-  test("renders speaker names from the official program", async () => {
-    const html = await render(ProgrammaSection);
-    expect(html).toContain("Stefano Massini");
-    expect(html).toContain("David Armitage");
-    expect(html).toContain("Nadia Fusini");
-  });
-
-  test("renders day and location filter buttons", async () => {
-    const html = await render(ProgrammaSection);
-    expect(html).toContain("Tutti i giorni");
-    expect(html).toContain("Venerdì 18");
-    expect(html).toContain("Tutte le sedi");
-    for (const c of ["Modena", "Carpi", "Sassuolo"]) expect(html).toContain(c);
-  });
-
-  test("renders event categories", async () => {
-    const html = await render(ProgrammaSection);
-    expect(html).toContain("Lezione magistrale");
-  });
-
-  test("no events are bookmarked in server output", async () => {
-    const html = await render(ProgrammaSection);
-    expect(html).not.toContain('class="prog-event prog-event--bookmarked"');
+    expect(html).not.toContain('x-data="programma"');
+    expect(html).not.toContain("prog-event");
   });
 });
 

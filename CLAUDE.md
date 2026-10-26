@@ -27,13 +27,17 @@ Components are rendered with Astro's Container API via the `render()` helper in 
 | `tests/restaurants.test.ts` | `src/data/restaurants.json` — fields, zero-padded sequential numbering, unique names |
 | `tests/hotel.test.ts` | `validateHotelForm` / `hotelTimeLine` and the server-rendered `AlloggioForm` |
 | `tests/sections.test.ts` | `SECTIONS` list, the accordion, and every section component's server output |
-| `tests/layout.test.ts` | `Header`, `Footer`, `NavMenu`, `FineFestivalModal` server output |
+| `tests/layout.test.ts` | `Header`, `Footer`, `NavMenu`, `WelcomeModal` server output |
+| `tests/decor.test.ts` | Motif generators (`lib/motifs.ts`), `DECORS`, `Decor` variants, `Settings` |
 
 Tests assert on server-rendered HTML only; Alpine behaviour is not exercised by the suite.
 
 ## Architecture
 
-Single-page companion app for festivalfilosofia 2026 (theme: "caos", 18–20 September, Modena/Carpi/Sassuolo).
+Companion app for festivalfilosofia 2027 (XXVII edition, theme: "mito", 17–19 September, Modena/Carpi/Sassuolo).
+The 2027 programme isn't published yet: `src/data/programma.json` is `[]`, so the Programma section shows a
+placeholder and the map shows every venue in `venues.json`. Filling in `programma.json` brings back the filters,
+bookmarks and per-venue event counts automatically (then update `tests/sections.test.ts`).
 Built with **Astro** (static output), **TypeScript** and **Alpine.js** (via `@astrojs/alpinejs`), using **Bun**
 as package manager and script runner. There is no backend: all user data lives in `localStorage`, so htmx
 is not used (there is nothing to fetch from a server).
@@ -51,7 +55,7 @@ in `.astro` files and in client scripts alike. `public/manifest.json` uses relat
 
 - `src/layouts/Layout.astro` — HTML shell (meta, theme bootstrap script, Tabler Icons CDN, global CSS), wraps
   every page with `Header` + `Footer`. A `slot="after"` renders after the footer.
-- `src/pages/` — `index`, `hotel`, `info`, `ristoranti`, `local-data`.
+- `src/pages/` — `index`, `hotel`, `info`, `ristoranti`, `impostazioni` (settings), `local-data`.
 - `src/components/` — Astro components; `src/components/sections/` holds the accordion section bodies.
 - `src/lib/` — framework-free TS shared by components, client scripts and tests (storage keys, validation,
   data helpers, `url()`).
@@ -74,14 +78,25 @@ and Alpine takes over via `x-data="<name>"`. Conventions:
 - An `x-data` wrapper around sibling elements uses `style="display: contents"` to keep the original layout;
   mind structural selectors such as `.risto-item:last-child` when adding wrappers.
 
-### End-of-edition modal
+### Welcome modal
 
-`src/components/FineFestivalModal.astro` shows a dismissable modal on load announcing that the 2026 edition
-is over and that the next one is *mito*, 17–19 September 2027. It is mounted on `src/pages/index.astro` only
-(not the layout): dismissal is deliberately **not** persisted, and the nav menu does full page loads, so a
-layout-wide mount would re-show it on every page. It renders open server-side, so there is no flash.
-Styles live under `/* FINE FESTIVAL MODAL */` at the end of `src/styles/style.css`. To update it for a
-future edition, edit the `PROSSIMA` const at the top of the component.
+`src/components/WelcomeModal.astro` shows a dismissable welcome to the current edition (*mito*, dates,
+cities; the programme is not out yet), mounted on `src/pages/index.astro` only. It is shown **once per
+edition**: when it opens, the edition year is stored under `ff-welcome`; on later loads the head script in
+`Layout.astro` sets `html[data-welcome="seen"]`, which hides it with CSS before first paint (no flash), and
+the Alpine component stays closed. Wiping local data shows it again. Edition facts (number, year, theme,
+dates, cities) live in `src/lib/edition.ts`; bumping the year there makes the welcome show again to
+everyone. Styles live under `/* WELCOME MODAL */` in `src/styles/style.css`.
+
+### Settings & decoration motif
+
+`/impostazioni` (`Settings.astro`, Alpine `settings`) lets the user pick the decorative motif, one per edition,
+listed in `DECORS` (`src/lib/decor.ts`): `mito` · 2027, the constellation of Orion (default; lines draw between
+twinkling stars, and the particles twinkle as a starfield), and `caos` · 2026, the Lorenz attractor. The choice is stored under `ff-decor` and applied as `html[data-decor]` by the inline
+script in `Layout.astro` before first paint (like the theme). `<Decor />` renders both motifs and CSS shows
+the chosen one; `<Decor variant="…" />` pins one (settings previews). To add an edition's motif: add a
+generator to `lib/motifs.ts`, a `<path>`/`<g>` to `DecorSprite.astro`, a `<use>` to `Decor.astro`, an entry to
+`DECORS`, and the matching `data-decor` rules in `style.css` (and the head script's allowed values).
 
 ### Sections
 
@@ -92,7 +107,7 @@ future edition, edit the `PROSSIMA` const at the top of the component.
 |----|-----------|-------|
 | info | `InfoSection` | Quick reference info |
 | mappa | `MapSection` | Leaflet + OSM map of venues, lazily loaded client-side |
-| programma | `ProgrammaSection` | Event schedule with day/city filters and bookmarks |
+| programma | `ProgrammaSection` | Event schedule with day/city filters and bookmarks; placeholder while empty |
 | hotel | `HotelSection` | Shows hotel data saved on `/hotel` |
 | ristoranti | `RistorantiSection` | Sample `src/data/restaurants.json`, or the user's list from `/ristoranti` |
 | note | `NotePad` | `localStorage`-persisted textarea |
@@ -106,10 +121,18 @@ its id in the `CONTENT` object in `Sections.astro`.
 - Page changes cross-fade via native cross-document view transitions (`@view-transition` at the top of
   `style.css`, disabled under `prefers-reduced-motion`). Don't add Astro's `<ClientRouter />`: it would
   turn navigation into an SPA and break Alpine's per-page init and the modal's show-on-every-load.
+- Text size scales globally through `--fs` (every `font-size` is `calc(Npx * var(--fs))`).
+- Decorative graphics are generated at build time by `src/lib/motifs.ts` (the motifs, the header
+  `ParticleField`, the per-letter offsets of the theme word). `DecorSprite.astro` defines the motif paths once
+  per page in the layout; `Decor.astro` reuses them via `<use>`. Motif stroke widths are set per instance with
+  `--sw` in viewBox units (not `non-scaling-stroke`, which breaks the `pathLength` draw animation). Styles
+  and all motion live under `/* DECORATION & MOTION */` in `style.css`. Intro animations only run when the
+  layout gets `intro` (home page), so they don't replay on every navigation. Reduced motion disables all of it.
 - `public/` — static files copied as-is (`manifest.json`, `icons/`).
 - Tabler Icons loaded from CDN webfont; use `<i class="ti ti-<name>" aria-hidden="true"></i>`.
 
 ### Data
 
 Static JSON in `src/data/`. Import it directly; no API layer. All `localStorage` keys are listed in
-`STORAGE_KEYS` (`src/lib/storage.ts`); `/local-data` wipes exactly those, so add new keys there.
+`STORAGE_KEYS` (`src/lib/storage.ts`); `/local-data` wipes exactly those, so add new keys there. The
+`ff2026-*` key names are kept on purpose for the 2027 edition so users' saved notes and data survive.

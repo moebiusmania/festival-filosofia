@@ -1,8 +1,8 @@
-# Festival di Filosofia 2026 — App companion
+# Festival di Filosofia 2027 — App companion
 
 > An English version of this README follows below.
 
-App companion non ufficiale per il [Festival di Filosofia 2026](https://www.festivalfilosofia.it/) (tema: **Caos**, 18–20 settembre, Modena · Carpi · Sassuolo).
+App companion non ufficiale per il [Festival di Filosofia 2027](https://www.festivalfilosofia.it/) (tema: **Mito**, 17–19 settembre, Modena · Carpi · Sassuolo).
 
 > **Nota:** questo progetto è un'iniziativa personale, realizzata per hobby. Non è in alcun modo affiliato, sponsorizzato o approvato dall'organizzazione ufficiale del Festival di Filosofia.
 
@@ -54,9 +54,9 @@ bun run check     # controllo dei tipi
 
 ---
 
-# Festival di Filosofia 2026 — Companion app
+# Festival di Filosofia 2027 — Companion app
 
-Unofficial companion web app for [Festival di Filosofia 2026](https://www.festivalfilosofia.it/) (theme: **Chaos**, 18–20 September, Modena · Carpi · Sassuolo).
+Unofficial companion web app for [Festival di Filosofia 2027](https://www.festivalfilosofia.it/) (theme: **Myth**, 17–19 September, Modena · Carpi · Sassuolo).
 
 > **Note:** this is a personal, hobbyist project. It is not affiliated with, sponsored by, or endorsed by the official Festival di Filosofia organisation in any way.
 

@@ -6,6 +6,9 @@ const container = await AstroContainer.create({
   astroConfig: { base: astroConfig.base },
 });
 
-export function render(component: AstroComponentFactory): Promise<string> {
-  return container.renderToString(component);
+export function render(
+  component: AstroComponentFactory,
+  props: Record<string, unknown> = {},
+): Promise<string> {
+  return container.renderToString(component, { props });
 }

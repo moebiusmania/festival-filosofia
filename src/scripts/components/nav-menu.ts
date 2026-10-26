@@ -16,7 +16,15 @@ export const navMenu = defineComponent(() => ({
     this.dark = document.documentElement.getAttribute("data-theme") === "dark";
     this.$watch("open", (open) => {
       document.body.style.overflow = open ? "hidden" : "";
+      if (open) this.originAtBurger();
     });
+  },
+  // The overlay is revealed as a circle growing from the burger button.
+  originAtBurger() {
+    const r = (this.$refs.burger as HTMLElement).getBoundingClientRect();
+    const overlay = this.$refs.overlay as HTMLElement;
+    overlay.style.setProperty("--ox", `${r.left + r.width / 2}px`);
+    overlay.style.setProperty("--oy", `${r.top + r.height / 2}px`);
   },
   toggleTheme() {
     this.dark = !this.dark;

@@ -1,12 +1,25 @@
 ---
+import Decor from "./Decor.astro";
+import ParticleField from "./ParticleField.astro";
+import { scatter } from "../lib/motifs.ts";
 import { url } from "../lib/url.ts";
 
 const MENU_ITEMS: Array<{ label: string; href: string }> = [
   { label: "Come funziona", href: url("info") },
   { label: "Alloggio", href: url("hotel") },
   { label: "Lista ristoranti", href: url("ristoranti") },
+  { label: "Impostazioni", href: url("impostazioni") },
   { label: "Dati locali", href: url("local-data") },
 ];
+
+// Pages are built as `hotel.html` / `index.html`; compare without suffixes.
+const normalize = (p: string) =>
+  p.replace(/(index)?\.html$/, "").replace(/\/?$/, "/");
+const here = normalize(Astro.url.pathname);
+const isCurrent = (href: string) => normalize(href) === here;
+
+// Each item enters from its own slight tilt (reuses the letter scatter).
+const tilts = scatter("xxxxxx", 7).map((s) => s.rot / 6);
 ---
 
 <div x-data="navMenu" style="display: contents">
@@ -25,6 +38,7 @@ const MENU_ITEMS: Array<{ label: string; href: string }> = [
       ></i>
     </button>
     <button
+      x-ref="burger"
       class="ff-nav-btn"
       :class="{ open }"
       type="button"
@@ -42,30 +56,50 @@ const MENU_ITEMS: Array<{ label: string; href: string }> = [
   </div>
 
   <div
+    x-ref="overlay"
     class="ff-nav-overlay"
     :class="{ open }"
     aria-hidden="true"
     :aria-hidden="String(!open)"
     @click="open = false"
   >
-    <div class="ff-nav-title" aria-hidden="true">
-      festival<em>filosofia</em>
+    <ParticleField count={28} seed={7} class="ff-nav-particles" />
+    <Decor class="ff-nav-decor" />
+
+    <div class="ff-nav-inner">
+      <div class="ff-nav-title" aria-hidden="true">
+        festival<em>filosofia</em>
+      </div>
+
+      <nav class="ff-nav-menu">
+        {
+          [{ label: "Torna all'inizio", href: url() }, ...MENU_ITEMS].map(
+            ({ label, href }, i) => (
+              <button
+                class="ff-nav-item"
+                type="button"
+                style={`--i:${i};--tilt:${tilts[i].toFixed(1)}deg`}
+                aria-current={isCurrent(href) ? "page" : undefined}
+                {...(i === 0
+                  ? { "@click.stop": "goHome()" }
+                  : { "@click.stop": `go(${JSON.stringify(href)})` })}
+              >
+                <span class="ff-nav-num">{String(i + 1).padStart(2, "0")}</span>
+                <span class="ff-nav-label">{label}</span>
+                <i class="ti ti-arrow-right ff-nav-arrow" aria-hidden="true"></i>
+              </button>
+            ),
+          )
+        }
+      </nav>
+
+      <div class="ff-nav-foot" aria-hidden="true">
+        <span class="ff-nav-foot-label">tema</span>
+        <span class="ff-nav-foot-tema">mito</span>
+        <span class="ff-nav-foot-dates">
+          17 · 18 · 19 settembre 2027<br />Modena · Carpi · Sassuolo
+        </span>
+      </div>
     </div>
-    <nav class="ff-nav-menu">
-      <button class="ff-nav-item" type="button" @click.stop="goHome()">
-        Torna all'inizio
-      </button>
-      {
-        MENU_ITEMS.map(({ label, href }) => (
-          <button
-            class="ff-nav-item"
-            type="button"
-            @click.stop={`go(${JSON.stringify(href)})`}
-          >
-            {label}
-          </button>
-        ))
-      }
-    </nav>
   </div>
 </div>

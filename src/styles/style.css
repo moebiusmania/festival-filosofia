@@ -39,11 +39,11 @@
   --ff-text: #1a1a1a;
   --ff-text-muted: #666462;
   --ff-border: #d8d6d4;
-  --fs: 1;
+  --fs: 1.15;
 }
 
-@media (min-width: 600px) and (max-width: 1024px) {
-  :root { --fs: 1.25; }
+@media (min-width: 600px) {
+  :root { --fs: 1.3; }
 }
 
 html[data-theme="dark"] {
@@ -115,7 +115,7 @@ body {
 
   .logo-line {
     font-family: 'EB Garamond', serif;
-    font-size: calc(28px * var(--fs));
+    font-size: calc(32px * var(--fs));
     font-weight: 400;
     letter-spacing: 0.01em;
     line-height: 1;
@@ -145,7 +145,7 @@ body {
   .theme-word {
     font-family: 'EB Garamond', serif;
     font-style: italic;
-    font-size: calc(36px * var(--fs));
+    font-size: calc(44px * var(--fs));
     font-weight: 400;
     color: var(--ff-red);
     line-height: 1;
@@ -237,7 +237,7 @@ body {
   display: none;
   padding: 20px;
   background: var(--ff-white);
-  animation: fadeSlide 0.2s ease;
+  animation: fadeSlide 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @keyframes fadeSlide {
@@ -580,7 +580,7 @@ html[data-theme="dark"] .leaflet-control-zoom a {
   margin-bottom: 14px;
   font-weight: 300;
 
-  .ti { font-size: 11px; vertical-align: -1px; color: var(--ff-red); }
+  .ti { font-size: calc(11px * var(--fs)); vertical-align: -1px; color: var(--ff-red); }
 }
 
 /* HOTEL */
@@ -1101,6 +1101,16 @@ html[data-theme="dark"] .leaflet-control-zoom a {
   }
 }
 
+/* With the larger type the footer no longer fits one phone-width line:
+   stack it, the red dot as a divider. */
+@media (max-width: 520px) {
+  .ff-footer {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
+
 /* DARK MODE — hardcoded color overrides */
 html[data-theme="dark"] .notepad-wrap {
   background: #14140d;
@@ -1183,76 +1193,240 @@ html[data-theme="dark"] .notepad-lines-bg {
 }
 
 /* NAV OVERLAY */
+/* Full-screen menu, revealed as a circle expanding from the burger button
+   (--ox/--oy are set from the button position in nav-menu.ts). */
 .ff-nav-overlay {
+  --ox: calc(100% - 42px);
+  --oy: 46px;
   position: fixed;
   inset: 0;
   z-index: 199;
+  overflow-y: auto;
   background: var(--ff-white);
-  opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s ease, visibility 0s 0.25s;
+  clip-path: circle(0 at var(--ox) var(--oy));
+  transition: clip-path 0.45s cubic-bezier(0.65, 0, 0.35, 1), visibility 0s 0.45s;
 }
 
 .ff-nav-overlay.open {
-  opacity: 1;
   visibility: visible;
-  transition: opacity 0.25s ease, visibility 0s 0s;
+  clip-path: circle(150% at var(--ox) var(--oy));
+  transition: clip-path 0.6s cubic-bezier(0.65, 0, 0.35, 1), visibility 0s;
+}
+
+.ff-nav-inner {
+  position: relative;
+  min-height: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 24px 20px 28px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* NAV OVERLAY TITLE */
 .ff-nav-title {
-  position: absolute;
-  top: 24px;
-  left: 0;
-  right: 0;
-  text-align: center;
   font-family: 'EB Garamond', serif;
   font-size: calc(22px * var(--fs));
   font-weight: 400;
+  line-height: 44px;
   letter-spacing: 0.01em;
   color: var(--ff-black);
+  padding-right: 100px;
   pointer-events: none;
 
   em { font-style: italic; }
 }
 
 /* NAV FULLSCREEN MENU */
+/* A numbered index like the accordion. Items settle in from a slight tilt
+   (--tilt), chaos into order; hovering sweeps a red rule under the label. */
 .ff-nav-menu {
-  position: absolute;
-  inset: 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 0;
-  padding: 0 28px;
+  padding: 36px 0;
 }
 
 .ff-nav-item {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  width: 100%;
+  padding: 16px 0;
   background: none;
   border: none;
   border-bottom: 1px solid var(--ff-border);
   color: var(--ff-black);
+  font: inherit;
+  text-align: left;
   cursor: pointer;
-  font-family: 'EB Garamond', serif;
-  font-size: calc(26px * var(--fs));
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  padding: 20px 0;
-  width: 100%;
-  max-width: 320px;
-  text-align: center;
-  transition: color 0.15s, opacity 0.15s;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  opacity: 0;
+  transform: translateY(18px) rotate(var(--tilt));
+  transform-origin: left center;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    color 0.2s;
 
   &:first-child {
     border-top: 1px solid var(--ff-border);
   }
 
-  &:hover {
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--ff-red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  &:hover,
+  &:focus-visible {
     color: var(--ff-red);
+
+    &::after { transform: scaleX(1); }
+    .ff-nav-num { color: var(--ff-red); }
+    .ff-nav-label { translate: 8px 0; }
+    .ff-nav-arrow { opacity: 1; translate: 0 0; }
+  }
+
+  &[aria-current="page"] {
+    color: var(--ff-red);
+
+    .ff-nav-num { color: var(--ff-red); }
+  }
+}
+
+.ff-nav-overlay.open .ff-nav-item {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.45s ease calc(var(--i) * 60ms + 180ms),
+    transform 0.8s cubic-bezier(0.2, 0.9, 0.25, 1) calc(var(--i) * 60ms + 180ms),
+    color 0.2s;
+}
+
+.ff-nav-num {
+  min-width: 2ch;
+  font-family: 'EB Garamond', serif;
+  font-size: calc(14px * var(--fs));
+  color: var(--ff-gray);
+  transition: color 0.2s;
+}
+
+.ff-nav-label {
+  font-family: 'EB Garamond', serif;
+  font-size: calc(30px * var(--fs));
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  transition: translate 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ff-nav-arrow {
+  margin-left: auto;
+  align-self: center;
+  font-size: calc(20px * var(--fs));
+  color: var(--ff-red);
+  opacity: 0;
+  translate: -12px 0;
+  transition: opacity 0.25s, translate 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ff-nav-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 12px;
+  row-gap: 6px;
+  padding-top: 16px;
+  border-top: 2px solid var(--ff-black);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.ff-nav-overlay.open .ff-nav-foot {
+  opacity: 1;
+  transition: opacity 0.6s ease 0.55s;
+}
+
+.ff-nav-foot-label {
+  font-size: calc(10px * var(--fs));
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ff-gray);
+}
+
+.ff-nav-foot-tema {
+  font-family: 'EB Garamond', serif;
+  font-size: calc(36px * var(--fs));
+  font-style: italic;
+  line-height: 1;
+  color: var(--ff-red);
+}
+
+.ff-nav-foot-dates {
+  flex-basis: 100%;
+  font-size: calc(12px * var(--fs));
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  color: var(--ff-text-muted);
+}
+
+/* The butterfly draws itself each time the menu opens. */
+.ff-nav-decor {
+  position: absolute;
+  right: -28%;
+  bottom: 4%;
+  width: 105vw;
+  height: 105vw;
+  max-width: 560px;
+  max-height: 560px;
+  --sw: 0.18;
+  opacity: 0.13;
+  pointer-events: none;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0s 0.45s;
+}
+
+.ff-nav-overlay.open .ff-nav-decor {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 2.6s cubic-bezier(0.45, 0, 0.2, 1) 0.2s;
+}
+
+@media (min-width: 900px) {
+  .ff-nav-menu {
+    max-width: 620px;
+  }
+
+  .ff-nav-label {
+    font-size: calc(34px * var(--fs));
+  }
+
+  .ff-nav-decor {
+    right: max(4vw, calc((100vw - 1024px) / 2));
+    bottom: auto;
+    top: 50%;
+    width: 44vw;
+    height: 44vw;
+    max-width: 520px;
+    max-height: 520px;
+    --sw: 0.12;
+    translate: 0 -50%;
+    opacity: 0.2;
   }
 }
 
@@ -1341,7 +1515,12 @@ html[data-theme="dark"] .notepad-lines-bg {
   font-style: italic;
 }
 
-/* FINE FESTIVAL MODAL */
+/* WELCOME MODAL */
+/* Already shown for this edition: never paint it (no flash before Alpine). */
+html[data-welcome="seen"] .ff-modal-overlay {
+  display: none;
+}
+
 .ff-modal-overlay {
   position: fixed;
   inset: 0;
@@ -1504,5 +1683,515 @@ html[data-theme="dark"] .notepad-lines-bg {
   &:hover {
     color: var(--ff-red);
     text-decoration: underline;
+  }
+}
+
+/* DECORATION & MOTION */
+/* One decorative motif per edition, chosen in /impostazioni and stored as
+   html[data-decor] (see lib/decor.ts, lib/motifs.ts):
+   - "mito" (2027, default): the constellation of Orion; its lines draw
+     between twinkling stars, the particles twinkle like a starfield, and
+     letters emerge in turn.
+   - "caos" (2026): the Lorenz attractor, the butterfly of chaos theory;
+     letters arrive scattered and settle, hovering stirs them again.
+   Plus drifting particles for both. Colours come only from the theme tokens,
+   so both themes work unchanged. Intro animations run on the home page only
+   (.ff-app--intro). */
+
+/* --sw is the stroke width in viewBox units (0–100), tuned per size to stay
+   around 1px (non-scaling-stroke would break the pathLength-based drawing
+   animation). Stars scale with it, so they keep a similar on-screen size. */
+.ff-decor {
+  fill: none;
+  stroke: var(--ff-red);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  overflow: visible;
+
+  use { stroke-width: var(--sw, 0.6); }
+}
+
+.ff-star {
+  fill: var(--ff-red);
+  stroke: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  /* Floor so stars stay visible on the large, thin-lined menu motif. */
+  scale: max(calc(var(--sw, 0.6) / 0.6), 0.5);
+  animation: starTwinkle 3s ease-in-out infinite;
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+html:not([data-decor="caos"]) .ff-decor:not(.ff-decor--fixed) .ff-decor-caos,
+html[data-decor="caos"] .ff-decor:not(.ff-decor--fixed) .ff-decor-mito {
+  display: none;
+}
+
+@keyframes drawPath {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes sway {
+  0%, 100% { rotate: -2deg; scale: 1; }
+  50% { rotate: 3deg; scale: 1.04; }
+}
+
+/* Header: decor sits behind the content, which is positioned (without a
+   z-index, so the nav overlay keeps its place in the root stacking order). */
+.ff-header {
+  position: relative;
+  overflow: hidden;
+
+  > .ff-header-top,
+  > .logo-line,
+  > .theme-block,
+  > .dates {
+    position: relative;
+  }
+
+  /* Keep date and cities whole; they wrap as two lines on phones. */
+  .dates {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1.5em;
+  }
+}
+
+.ff-header-decor {
+  position: absolute;
+  top: 22px;
+  right: -44px;
+  width: 170px;
+  height: 170px;
+  --sw: 0.6;
+  opacity: 0.35;
+  pointer-events: none;
+  animation: sway 24s ease-in-out infinite;
+}
+
+@media (min-width: 600px) {
+  .ff-header-decor {
+    top: 50%;
+    right: 6%;
+    width: 230px;
+    height: 230px;
+    --sw: 0.45;
+    margin-top: -115px;
+    opacity: 0.4;
+  }
+}
+
+/* Orion is sparse: on phones keep its top stars clear of the header buttons,
+   and in the menu give it more presence than the dense butterfly needs. */
+@media (max-width: 599px) {
+  html:not([data-decor="caos"]) .ff-header-decor {
+    top: 52px;
+    right: -30px;
+    width: 150px;
+    height: 150px;
+  }
+}
+
+html:not([data-decor="caos"]) .ff-nav-decor {
+  opacity: 0.3;
+}
+
+.ff-app--intro .ff-header-decor {
+  animation:
+    drawPath 4.5s cubic-bezier(0.45, 0, 0.2, 1) 0.2s both,
+    sway 24s ease-in-out infinite;
+}
+
+.ff-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ff-particle {
+  position: absolute;
+  width: calc(var(--r) * 2);
+  height: calc(var(--r) * 2);
+  border-radius: 50%;
+  background: var(--ff-gray);
+  opacity: 0.35;
+  animation-name: drift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.ff-particle--red {
+  background: var(--ff-red);
+  opacity: 0.55;
+}
+
+/* "mito": the particles become a starfield, twinkling as they drift. */
+html:not([data-decor="caos"]) .ff-particle {
+  animation-name: drift, particleTwinkle;
+}
+
+@keyframes particleTwinkle {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.08; }
+}
+
+@keyframes drift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(var(--dx), var(--dy)); }
+}
+
+/* Theme word letters: per-motif intro (below) and, for "caos", a hover stir. */
+.theme-letters {
+  display: inline-block;
+}
+
+.theme-letter {
+  display: inline-block;
+  transition: rotate 0.5s cubic-bezier(0.3, 1.6, 0.5, 1), translate 0.5s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+html[data-decor="caos"] .theme-block:hover .theme-letter {
+  rotate: calc(var(--rot) / 5);
+  translate: calc(var(--dx) / 12) calc(var(--dy) / 8);
+}
+
+/* "mito": letters surface one by one out of a blur, like a story retold. */
+@keyframes letterEmerge {
+  from { opacity: 0; transform: translateY(0.35em); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+.ff-app--intro .theme-letter {
+  animation: letterEmerge 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 160ms + 300ms);
+}
+
+@keyframes letterSettle {
+  0% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.6);
+  }
+  60% { opacity: 1; }
+  100% { opacity: 1; transform: none; }
+}
+
+html[data-decor="caos"] .ff-app--intro .theme-letter {
+  animation: letterSettle 1.3s cubic-bezier(0.2, 0.9, 0.25, 1) both;
+  animation-delay: calc(var(--i) * 110ms + 250ms);
+}
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+.ff-app--intro .logo-line,
+.ff-app--intro .dates {
+  animation: riseIn 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.ff-app--intro .dates {
+  animation-delay: 0.5s;
+}
+
+/* Accordion: staggered entrance, a red marker grows on the open section,
+   titles lean in on hover. */
+.ff-app--intro .ff-section {
+  animation: riseIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 70ms + 450ms);
+}
+
+.ff-section-header {
+  position: relative;
+  transition: background 0.3s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--ff-red);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}
+
+.ff-section.open > .ff-section-header::before {
+  transform: scaleY(1);
+}
+
+.ff-section-title {
+  transition: color 0.3s, translate 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ff-section-header:hover .ff-section-title {
+  translate: 4px 0;
+}
+
+.ff-section-arrow {
+  transition: transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1), color 0.3s;
+}
+
+/* Info grid */
+.info-cell {
+  transition: background 0.25s;
+
+  &:hover { background: var(--ff-gray-light); }
+}
+
+/* Programme: bookmarks pop in. */
+@keyframes pop {
+  0% { transform: scale(0) rotate(-25deg); }
+  70% { transform: scale(1.25) rotate(6deg); }
+  100% { transform: scale(1); }
+}
+
+.prog-bookmark-icon {
+  animation: pop 0.4s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+.prog-event {
+  transition: background 0.25s, padding-left 0.25s;
+}
+
+.prog-event:not(.prog-event--bookmarked):hover {
+  background: var(--ff-gray-light);
+  padding-left: 14px;
+}
+
+/* Inner pages: a red rule draws under the title. */
+@keyframes growLine {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.ff-page h2,
+.dati-locali-page h2 {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 56px;
+    height: 2px;
+    background: var(--ff-red);
+    transform-origin: left;
+    animation: growLine 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both;
+  }
+}
+
+.ff-page > :not(h2),
+.dati-locali-page > :not(h2) {
+  animation: riseIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+}
+
+/* Modal: the card settles from a tilt; the edition block gets the motif. */
+@keyframes cardSettle {
+  from { opacity: 0; transform: translateY(18px) rotate(-2.5deg) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+.ff-modal-card {
+  animation: cardSettle 0.7s cubic-bezier(0.2, 0.9, 0.25, 1);
+}
+
+.ff-modal-next {
+  position: relative;
+  isolation: isolate;
+}
+
+.ff-modal-decor {
+  position: absolute;
+  z-index: -1;
+  top: 6px;
+  right: -8px;
+  width: 140px;
+  height: 140px;
+  --sw: 0.7;
+  opacity: 0.3;
+  pointer-events: none;
+  animation: drawPath 3.5s cubic-bezier(0.45, 0, 0.2, 1) 0.4s both;
+}
+
+/* Footer: the red dot breathes. */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 var(--ff-red); }
+  70%, 100% { box-shadow: 0 0 0 8px transparent; }
+}
+
+.ff-footer .red-dot {
+  animation: pulse 2.8s ease-out infinite;
+}
+
+/* Programme placeholder (until the 2027 programme is published). The motif
+   draws itself when the section is opened. */
+.prog-placeholder {
+  padding: 28px 16px 24px;
+  border: 1px dashed var(--ff-border);
+  text-align: center;
+}
+
+.prog-placeholder-decor {
+  --sw: 0.9;
+  display: block;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 16px;
+  opacity: 0.6;
+  animation: drawPath 3s cubic-bezier(0.45, 0, 0.2, 1) 0.15s both;
+}
+
+.prog-placeholder-title {
+  font-family: 'EB Garamond', serif;
+  font-size: calc(24px * var(--fs));
+  font-style: italic;
+  color: var(--ff-black);
+}
+
+.prog-placeholder-text {
+  max-width: 34em;
+  margin: 8px auto 16px;
+  font-size: calc(14px * var(--fs));
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--ff-text-muted);
+
+  em { color: var(--ff-red); }
+}
+
+.prog-placeholder-link {
+  font-size: calc(13px * var(--fs));
+  letter-spacing: 0.04em;
+  color: var(--ff-red);
+  text-decoration: none;
+
+  &:hover { text-decoration: underline; }
+}
+
+/* SETTINGS */
+.ff-setting {
+  border: none;
+}
+
+.ff-setting-title {
+  font-family: 'EB Garamond', serif;
+  font-size: calc(19px * var(--fs));
+  font-weight: 500;
+  color: var(--ff-black);
+  margin-bottom: 4px;
+}
+
+.ff-setting-hint {
+  font-size: calc(13px * var(--fs));
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ff-text-muted);
+  margin-bottom: 16px;
+}
+
+.ff-decor-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+/* Each option is a card with a live preview; the chosen one redraws. */
+.ff-decor-option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 14px 18px;
+  border: 1px solid var(--ff-border);
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &:hover { background: var(--ff-gray-light); }
+
+  &.selected {
+    border-color: var(--ff-red);
+    box-shadow: inset 0 0 0 1px var(--ff-red);
+  }
+
+  &:has(input:focus-visible) {
+    outline: 2px solid var(--ff-red);
+    outline-offset: 2px;
+  }
+}
+
+.ff-decor-option-preview {
+  --sw: 1;
+  width: 96px;
+  height: 96px;
+  opacity: 0.45;
+  transition: opacity 0.25s;
+}
+
+.ff-decor-option.selected .ff-decor-option-preview {
+  opacity: 1;
+  animation: drawPath 1.8s cubic-bezier(0.45, 0, 0.2, 1) both;
+}
+
+.ff-decor-option-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-align: center;
+}
+
+.ff-decor-option-tema {
+  font-family: 'EB Garamond', serif;
+  font-size: calc(26px * var(--fs));
+  font-style: italic;
+  line-height: 1;
+  color: var(--ff-red);
+}
+
+.ff-decor-option-year {
+  font-size: calc(11px * var(--fs));
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ff-gray);
+}
+
+.ff-decor-option-motif {
+  font-size: calc(12px * var(--fs));
+  font-weight: 300;
+  color: var(--ff-text-muted);
+}
+
+/* Respect reduced motion: no drift, no intros, no transitions. Every
+   animation still lands on its end state, so drawings appear complete. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
   }
 }

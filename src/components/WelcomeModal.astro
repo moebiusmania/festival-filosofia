@@ -1,16 +1,15 @@
 ---
-// Update for a future edition here.
-const PROSSIMA = {
-  tema: "mito",
-  date: "17–19 settembre 2027",
-  città: "Modena · Carpi · Sassuolo",
-};
+import Decor from "./Decor.astro";
+import { EDITION as EDIZIONE } from "../lib/edition.ts";
 
 const SITO = "https://www.festivalfilosofia.it/";
 ---
 
+<!-- Shown once per edition: returning visitors are hidden by
+     html[data-welcome="seen"], set by the head script in Layout.astro. -->
 <div
-  x-data="fineFestivalModal"
+  x-data="welcomeModal"
+  data-edition={EDIZIONE.anno}
   class="ff-modal-overlay open"
   :class="{ open }"
   aria-hidden="false"
@@ -36,26 +35,26 @@ const SITO = "https://www.festivalfilosofia.it/";
       <i class="ti ti-x" aria-hidden="true"></i>
     </button>
 
-    <p class="ff-modal-eyebrow">edizione 2026 · conclusa</p>
+    <p class="ff-modal-eyebrow">{EDIZIONE.numero} edizione · {EDIZIONE.anno}</p>
     <h2 class="ff-modal-title" id="ff-modal-title">
-      Ci vediamo l'anno prossimo
+      Benvenuti al festivalfilosofia {EDIZIONE.anno}
     </h2>
     <p class="ff-modal-body">
-      Il festivalfilosofia 2026 su <em>caos</em> si è concluso il 20
-      settembre. Grazie di aver camminato con noi tra Modena, Carpi e
-      Sassuolo.
+      Il programma non è ancora stato pubblicato: intanto puoi annotare
+      alloggio, ristoranti e appunti, e ritrovarli qui durante il festival.
     </p>
 
     <div class="ff-modal-next">
-      <p class="ff-modal-eyebrow">la prossima edizione</p>
-      <p class="ff-modal-tema">{PROSSIMA.tema}</p>
-      <p class="ff-modal-date">{PROSSIMA.date}</p>
-      <p class="ff-modal-cities">{PROSSIMA.città}</p>
+      <Decor class="ff-modal-decor" />
+      <p class="ff-modal-eyebrow">il tema</p>
+      <p class="ff-modal-tema">{EDIZIONE.tema}</p>
+      <p class="ff-modal-date">{EDIZIONE.date}</p>
+      <p class="ff-modal-cities">{EDIZIONE.città}</p>
     </div>
 
     <div class="ff-modal-actions">
       <button class="ff-modal-btn" type="button" @click="close()">
-        Chiudi
+        Inizia
       </button>
       <a
         class="ff-modal-link"

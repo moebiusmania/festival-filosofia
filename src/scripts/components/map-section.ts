@@ -12,12 +12,12 @@ function escapeHtml(s: string): string {
 
 function popupHtml(v: Venue): string {
   const n = COUNTS[v.venue] ?? 0;
-  const events = `${n} ${n === 1 ? "evento" : "eventi"}`;
+  const events = n > 0 ? ` · ${n} ${n === 1 ? "evento" : "eventi"}` : "";
   const dir =
     `https://www.google.com/maps/dir/?api=1&destination=${v.lat},${v.lng}`;
   return `<div class="ff-map-popup">
     <strong>${escapeHtml(v.venue)}</strong>
-    <span>${escapeHtml(v.city)} · ${events}</span>
+    <span>${escapeHtml(v.city)}${events}</span>
     <a href="${dir}" target="_blank" rel="noopener">Apri in Maps →</a>
   </div>`;
 }

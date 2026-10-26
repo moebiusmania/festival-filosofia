@@ -25,6 +25,7 @@ const CONTENT = {
       return (
         <section
           class:list={["ff-section", { open: openOnLoad }]}
+          style={`--i:${i}`}
           :class={`{ open: isOpen('${id}') }`}
           data-id={id}
         >

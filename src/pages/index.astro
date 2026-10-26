@@ -1,12 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Sections from "../components/Sections.astro";
-import FineFestivalModal from "../components/FineFestivalModal.astro";
+import WelcomeModal from "../components/WelcomeModal.astro";
 ---
 
-<Layout>
+<Layout intro>
   <Sections />
   <!-- Home page only: dismissal isn't persisted and the nav menu does full
        page loads, so a layout-wide mount would re-show it on every page. -->
-  <FineFestivalModal slot="after" />
+  <WelcomeModal slot="after" />
 </Layout>
